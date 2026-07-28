@@ -1,41 +1,45 @@
 {
-  "total_learning_nodes": 31,
+  "total_learning_nodes": 63,
   "by_status": {
     "mastered": 1,
     "learning": 5,
-    "todo": 25,
+    "todo": 57,
     "question": 0
   },
   "by_status_label": {
     "已掌握": 1,
     "学习中": 5,
-    "待学习": 25,
+    "待学习": 57,
     "有疑问": 0
   },
   "by_stage": {
-    "basic": 6,
-    "middle": 7,
-    "applied": 10,
-    "advanced": 4,
-    "office": 4
+    "basic": 8,
+    "middle": 12,
+    "applied": 12,
+    "advanced": 15,
+    "office": 7,
+    "electrical": 3,
+    "project": 6
   },
   "by_stage_label": {
-    "基础": 6,
-    "中段": 7,
-    "应用": 10,
-    "进阶": 4,
-    "办公型岗位重点": 4
+    "基础": 8,
+    "中段": 12,
+    "应用": 12,
+    "进阶": 15,
+    "办公型岗位重点": 7,
+    "电气基础（零基础必读）": 3,
+    "实战项目（组合技能）": 6
   },
   "mastery_distribution": {
-    "0-25": 26,
+    "0-25": 58,
     "26-50": 4,
     "51-75": 0,
     "76-100": 1
   },
-  "completion_rate": 3.23,
-  "average_mastery": 9.84,
+  "completion_rate": 1.59,
+  "average_mastery": 4.84,
   "mastered_count": 1,
   "learning_count": 5,
-  "todo_count": 25,
+  "todo_count": 57,
   "question_count": 0
 }
