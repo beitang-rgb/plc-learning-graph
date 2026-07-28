@@ -13,7 +13,7 @@
       ],
       "learning": "Siemens S7 PLC, HMI, 变频器, Modbus/OPC UA"
     },
-    "generated_at": "2026-07-28T18:42:05"
+    "generated_at": "2026-07-28T19:41:21"
   },
   "nodes": [
     {
@@ -1673,6 +1673,266 @@
           "防火墙"
         ]
       }
+    },
+    {
+      "id": "concept_what_is_plc",
+      "label": "什么是 PLC？（零基础白话版）",
+      "type": "concept",
+      "properties": {
+        "stage": "electrical",
+        "stage_label": "电气基础（零基础必读）",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "PLC 就是「可编程逻辑控制器」，说白了就是一个工业用的「智能开关」。【类比理解】你家的洗衣机有一个控制板，按「开始」→进水→洗涤→排水→脱水→结束。PLC 就是工厂里的「洗衣机控制板」，但它可以控制整条生产线。【PLC 能做什么？五大核心功能】1. 控制电机启停（传送带、水泵、风机、搅拌机）2. 控制温度（恒温箱、注塑机加热、锅炉控温）3. 计数（产品数量、包装计数、流水线计数）4. 定时（交通灯、定时喷水、延时启动）5. 与电脑通信（上传数据到 MES 系统、远程监控）【PLC 长什么样？】一个方盒子，左边是输入端子（接按钮/传感器），右边是输出端子（接电机/指示灯），中间是 CPU 运行程序。跟普通电脑的区别：PLC 不需要鼠标键盘显示器，它自己默默运行，全年无休。【PLC 为什么叫「可编程」？】传统继电器控制如果要改逻辑，需要重新接线（物理改线路）。PLC 只需要改程序（软件改逻辑），不用碰一根线。这就是「可编程」的含义。【PLC 的工作方式】PLC 不断循环执行：读输入→执行程序→写输出→通信检查。这个循环叫「扫描周期」，通常 1-10 毫秒完成一次。【零基础能学吗？】能！PLC 的梯形图（LAD）就是模仿继电器电路图画的，如果你能看懂电路图（开关+灯泡），就能看懂梯形图。来源：PLC Academy (plcacademy.com)、RealPars (realpars.com)、西门子官方入门文档 (siemens.com)、Wikipedia PLC 词条。",
+        "notes": "PLC 不难，难的是坚持。你不需要一次搞懂所有概念，先理解「输入→逻辑→输出」这个铁三角就够了。",
+        "code_examples": [
+          "# 用一句话理解 PLC：\n# PLC = 输入（按钮/传感器）→ 程序（你写的逻辑）→ 输出（电机/灯）\n\n# 类比：PLC 就像工厂的「大脑」\n# 传感器 = 眼睛（看到温度、压力、位置）\n# 程序 = 思考（判断条件、做决策）\n# 执行器 = 手（电机转、灯亮、阀门开）\n\n# 最简单的 PLC 程序（梯形图逻辑）：\n# 如果 启动按钮按下 AND 急停没有按下 → 电机转动\n# 如果 停止按钮按下 OR 急停按下 → 电机停止\n\n# SCL 实现：\nIF \"Start_Button\" AND NOT \"Emergency_Stop\" THEN\n    \"Motor\" := TRUE;\nEND_IF;\nIF \"Stop_Button\" OR \"Emergency_Stop\" THEN\n    \"Motor\" := FALSE;\nEND_IF;"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "零基础",
+          "PLC",
+          "入门",
+          "白话",
+          "扫描周期",
+          "铁三角",
+          "输入输出"
+        ]
+      }
+    },
+    {
+      "id": "concept_plc_tools",
+      "label": "PLC 学习必备工具清单（零基础）",
+      "type": "concept",
+      "properties": {
+        "stage": "electrical",
+        "stage_label": "电气基础（零基础必读）",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "学 PLC 前需要准备的工具和软件，最低成本方案。【软件（必须）】1. TIA Portal V17/V18/V19（西门子官方编程软件，试用版 21 天免费）下载：support.industry.siemens.com（需注册免费账号）。替代方案：OpenPLC Editor（免费开源，github.com/Autonomy-Logic/openplc-editor）。2. PLCSIM（TIA Portal 自带仿真器，无需硬件即可调试程序）。3. CODESYS（免费，支持 IEC 61131-3，store.codesys.com）。4. Factory IO（3D 工厂仿真，30天试用，factoryio.com）—— 强烈推荐！【硬件（可选，按需购买）】1. S7-1200 入门套件（约 2000-3000 元，含 CPU 1214C + 电源 + IO）。2. 24V 直流电源（为 PLC 和传感器供电，约 100 元）。3. 按钮/开关/指示灯（练习输入输出接线，约 50 元）。4. 网线（连接 PLC 和电脑，约 10 元）。5. 二手 PLC 也可以在闲鱼上买到（约 500-1000 元，注意检查是否正常）。【电脑配置要求】Windows 10/11 专业版 64位（家庭版不支持 TIA Portal！），内存 >= 16GB（推荐 32GB），SSD 剩余 >= 100GB。【零成本学习方案】OpenPLC Editor（免费编程）+ OpenPLC Runtime（免费仿真）+ 在线梯形图仿真器（plcsimulator.online）。【学习资料】plcacademy.com（免费英文教程）、realpars.com（视频课程，部分免费）、B站搜索「西门子 PLC 教程」「TIA Portal 入门」「阳胜峰 PLC」。来源：各软件官网、B站教程、CSDN 安装教程、知乎。",
+        "notes": "如果电脑配置不够装 TIA Portal，用 OpenPLC 或 CODESYS 也能学，效果一样。PLC 的核心是编程思维，不是软件。",
+        "code_examples": [
+          "# 零成本学习 PLC 的完整方案：\n# Step 1: 下载 OpenPLC Editor（免费）\n#    github.com/Autonomy-Logic/openplc-editor/releases\n# Step 2: 下载 OpenPLC Runtime（免费仿真）\n#    github.com/Autonomy-Logic/openplc-runtime\n# Step 3: Docker 一键运行 Runtime：\n#    docker run -it --rm -p 8080:8080 openplc/openplc-v4:latest\n# Step 4: 打开浏览器 http://localhost:8080\n# Step 5: 在 Editor 中编写梯形图 -> 上传到 Runtime -> 在线监控\n\n# TIA Portal 试用版下载步骤：\n# 1. 注册西门子账号：support.industry.siemens.com\n# 2. 搜索 \"TIA Portal V19 Trial\"\n# 3. 下载并安装（选择 STEP 7 + WinCC + PLCSIM）\n# 4. 试用 21 天，到期后可以重新注册新账号继续试用\n\n# CODESYS 安装（永久免费）：\n# 1. store.codesys.com 下载 CODESYS V3.5\n# 2. 安装后无需注册，直接使用\n# 3. 支持西门子、施耐德、倍福等多种 PLC 品牌"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "零基础",
+          "工具",
+          "OpenPLC",
+          "CODESYS",
+          "TIA Portal",
+          "PLCSIM",
+          "免费学习",
+          "Factory IO"
+        ]
+      }
+    },
+    {
+      "id": "concept_tia_tour",
+      "label": "TIA Portal 界面零基础入门（每个按钮干什么）",
+      "type": "concept",
+      "properties": {
+        "stage": "basic",
+        "stage_label": "基础",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "TIA Portal 是西门子的全集成自动化平台，学 PLC 必会。这是零基础界面导航。【TIA Portal 是什么？】TIA = Totally Integrated Automation（全集成自动化）。一个软件完成 PLC 编程 + HMI 画面 + 驱动配置 + 网络组态。【主界面布局（从零开始）】1. 项目视图（Project View）：左侧是项目树（像文件夹），中间是工作区，右侧是信息栏。2. 设备视图（Device View）：看到 PLC 的「实物图」，可以拖拽模块。3. 网络视图（Network View）：看到 PLC、HMI、驱动之间的连接关系。4. 拓扑视图（Topology View）：看到设备的物理端口连接。【项目树（最重要！）】按从上到下的顺序：- 添加新设备（Add new device）：添加 PLC、HMI、驱动。- PLC_1 [CPU 1214C]：这是你的 PLC，展开后看到程序块（Program blocks）。- 程序块（Program blocks）：Main [OB1]（主程序）、其他 FB/FC/DB。- 监控与强制表（Watch and force tables）：在线监控变量值。- 在线备份（Online backups）：备份 PLC 中的程序。【工具栏常用按钮】- 编译（Compile）：把程序翻译成 PLC 能懂的代码。- 下载到设备（Download to device）：把程序传到 PLC 里。- 在线（Go online）：连接 PLC 查看实时状态。- 离线（Go offline）：断开连接。- 监控（Monitor）：在线查看变量的实时值。来源：西门子 TIA Portal 官方手册 (siemens.com)、RealPars TIA Portal 教程。",
+        "notes": "TIA Portal 看起来复杂，但常用的就那几个按钮。别被界面吓到，先学会「创建项目->写程序->编译->下载」这个循环就够了。",
+        "code_examples": [
+          "# TIA Portal 创建第一个项目（手把手）：\n# Step 1: 双击 TIA Portal 图标 -> 点击「创建新项目」\n# Step 2: 项目名称输入「MyFirstPLC」-> 点击「创建」\n# Step 3: 点击「组态设备」-> 点击「添加新设备」\n# Step 4: 选择「控制器」->「SIMATIC S7-1200」->「CPU 1214C DC/DC/DC」\n#   （DC/DC/DC 表示：供电 DC、输入 DC、输出 DC）\n#   （订货号：6ES7 214-1AG40-0XB0）\n# Step 5: 点击「确定」-> PLC 出现在设备视图中\n# Step 6: 双击项目树中的「Main [OB1]」-> 打开梯形图编辑器\n# Step 7: 从右侧指令栏拖拽「常开触点」到程序段 1\n# Step 8: 拖拽「输出线圈」到程序段 1\n# Step 9: 点击「编译」按钮（或 Ctrl+B）\n# Step 10: 点击「下载到设备」按钮 -> 选择 PG/PC 接口 -> 下载\n\n# 注意：如果还没有 PLC 硬件，可以只做到 Step 9，用 PLCSIM 仿真运行。"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "零基础",
+          "TIA Portal",
+          "界面",
+          "项目树",
+          "按钮",
+          "创建项目",
+          "手把手"
+        ]
+      }
+    },
+    {
+      "id": "concept_plc_download",
+      "label": "PLC 程序下载与调试全流程（手把手）",
+      "type": "concept",
+      "properties": {
+        "stage": "basic",
+        "stage_label": "基础",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "把程序从电脑下载到 PLC 并调试的完整流程，零基础也能看懂。【第 1 步：连接硬件】1. 用网线连接电脑和 PLC 的 PROFINET 接口（两个 RJ45 口中的任意一个）。2. PLC 接通 24V 电源（L+ 接 24V+，M 接 24V-）。3. 确认 PLC 上的 RUN/STOP 指示灯：STOP 亮黄灯 = 停止状态（可以下载）。【第 2 步：设置 PG/PC 接口】1. Windows 控制面板 -> 设置 PG/PC 接口。2. 选择「PN/IE」（PROFINET 接口）-> 选择你电脑的网卡。3. 如果不知道选哪个网卡：打开「网络连接」，看哪个网卡接了 PLC。【第 3 步：设置电脑 IP 地址】1. 网络设置 -> 以太网 -> 属性 -> IPv4。2. 设置为：IP 192.168.0.100，子网掩码 255.255.255.0。3. 默认 PLC IP 是 192.168.0.1（新 PLC 可能没有 IP，需要先用 TIA Portal 分配）。【第 4 步：TIA Portal 下载】1. 编译程序（Ctrl+B）-> 确保没有错误。2. 点击「下载到设备」-> 选择「PN/IE」-> 选择你的网卡。3. 点击「开始搜索」-> 找到 PLC -> 点击「下载」。4. 如果提示「模块需要停机」-> 点击「确定」（下载时会自动 STOP）。5. 下载完成后，勾选「启动模块」-> 点击「完成」。【第 5 步：在线监控调试】1. 点击「在线」按钮（或 Ctrl+K）-> 连接到 PLC。2. 点击「监控」按钮（或 Ctrl+F7）-> 看到变量的实时值。3. 梯形图中绿色的线 = 通电（TRUE），虚线 = 断电（FALSE）。4. 右键变量 -> 修改 -> 修改为 1/0 -> 可以手动强制信号。【常见问题】- 搜不到 PLC：检查网线、IP 地址、防火墙关闭。- 下载失败「模块类型不匹配」：项目中的 CPU 型号和实际 PLC 不一致。- 下载失败「访问被拒绝」：PLC 有密码保护，需要输入密码。来源：西门子 TIA Portal 手册、CSDN 教程、RealPars 视频。",
+        "notes": "下载和调试是 PLC 工程师最常做的操作，每天至少做几十次。把这个流程练熟，面试时能加分。",
+        "code_examples": [
+          "# PLC 调试常用操作（TIA Portal 快捷键）：\n# Ctrl+B = 编译（必须先编译才能下载）\n# Ctrl+K = 在线/离线切换\n# Ctrl+F7 = 开始/停止监控\n# Ctrl+Shift+D = 下载到设备\n\n# 在线监控时观察变量值：\n# 1. 打开「监控与强制表」（Watch Table）\n# 2. 输入变量名（如 \"Motor\"、\"Temperature\"）\n# 3. 点击「监控所有」-> 看到实时值\n# 4. 右键 -> 修改 -> 修改值 -> 强制变量\n\n# 用 PLCSIM 仿真（无需硬件）：\n# 1. TIA Portal 中点击「开始仿真」-> PLCSIM 启动\n# 2. 下载程序到 PLCSIM（虚拟 PLC）\n# 3. 在 PLCSIM 中可以看到输入输出状态\n# 4. 勾选输入点 = 模拟按钮按下\n# 5. 观察输出点变化 = 模拟电机启停"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "零基础",
+          "下载",
+          "调试",
+          "监控",
+          "PLCSIM",
+          "IP地址",
+          "在线",
+          "手把手"
+        ]
+      }
+    },
+    {
+      "id": "concept_lad_20",
+      "label": "梯形图 20 个经典控制案例（从入门到熟练）",
+      "type": "concept",
+      "properties": {
+        "stage": "basic",
+        "stage_label": "基础",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "20 个真实工业场景的梯形图案例，从简单到复杂，覆盖 90% 的常见控制需求。每个案例都给出了原理说明和梯形图逻辑。【案例 1-5：基础逻辑】1. 点动控制：按住按钮->电机转，松开->电机停。2. 自锁（起保停）：按启动->电机转并保持，按停止->停。最经典的电路！3. 互锁：两个电机不能同时运行（正反转互锁）。4. 多地控制：两个地方都可以启停同一个电机（甲地启动/乙地停止）。5. 顺序启动：电机1启动后，电机2才能启动；停止时电机2先停，电机1后停。【案例 6-10：定时控制】6. 延时启动：按下启动按钮后，等待 5 秒电机才开始转。7. 延时停止：按下停止按钮后，电机继续转 10 秒再停。8. 闪烁电路（振荡器）：灯以 1 秒间隔闪烁（TON+TOF 组合）。9. 星三角降压启动：大电机启动时先星形接法（降压），3 秒后切换三角形。10. 交通灯控制：东西向绿灯 30 秒->黄灯 3 秒->红灯，南北向交替。【案例 11-15：计数与比较】11. 产品计数：每检测到一个产品，计数器 +1，满 100 个自动停止。12. 交替输出（单按钮启停）：同一个按钮，按一下启动、再按一下停止。13. 仓库库存管理：入库 +1，出库 -1，低于 10 个报警。14. 温度区间控制：温度 < 20°C 加热，20-30°C 保持，> 30°C 冷却。15. 模拟量转换：4-20mA 信号转换为 0-100°C 温度值。【案例 16-20：综合应用】16. 传送带控制：有料时传送带运行，无料 5 秒后自动停止。17. 自动门控制：检测到人->开门->保持 5 秒->关门（防夹功能）。18. 泵站轮换：两台泵轮流工作，每 2 小时切换一次，均衡磨损。19. 故障报警：电机过载->报警灯闪烁+蜂鸣器响->按确认后蜂鸣器停，灯保持。20. 配方选择：根据产品型号选择不同参数（如加热温度、时间）。来源：plcacademy.com、RealPars、CSDN 梯形图教程、电气工程师实战经验。",
+        "notes": "这 20 个案例包含了工业控制中 90% 的常见场景。建议一个一个亲手写，不要复制粘贴，写完后用 PLCSIM 仿真验证。",
+        "code_examples": [
+          "# 案例 2：自锁（起保停）—— 最经典的 PLC 程序\n# 梯形图逻辑：\n#  ┌──[启动]──┬──[停止]──(电机)\n#  │          │\n#  └──[电机]──┘（自锁触点并联在启动按钮两端）\n\n// SCL 实现：\nIF \"Start_Button\" THEN\n    \"Motor\" := TRUE;  // 按下启动 -> 电机启动\nEND_IF;\nIF \"Stop_Button\" THEN\n    \"Motor\" := FALSE; // 按下停止 -> 电机停止\nEND_IF;\n\n# 案例 8：闪烁电路（1 秒亮，1 秒灭）\n// SCL 实现：\nIF \"Timer_Blink\".ET >= T#2S THEN\n    \"Timer_Blink\"(IN := FALSE);  // 重置定时器\n    \"Timer_Blink\"(IN := TRUE);\nEND_IF;\nIF \"Timer_Blink\".ET < T#1S THEN\n    \"Lamp\" := TRUE;   // 前 1 秒亮\nELSE\n    \"Lamp\" := FALSE;  // 后 1 秒灭\nEND_IF;\n\n# 案例 11：产品计数（满 100 个停止）\nIF \"Product_Sensor\" THEN\n    \"Counter\" := \"Counter\" + 1;\nEND_IF;\nIF \"Counter\" >= 100 THEN\n    \"Conveyor\" := FALSE;  // 传送带停止\n    \"Full_Lamp\" := TRUE;  // 满仓灯亮\nEND_IF;"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "零基础",
+          "梯形图",
+          "案例",
+          "自锁",
+          "互锁",
+          "定时器",
+          "计数器",
+          "控制逻辑"
+        ]
+      }
+    },
+    {
+      "id": "concept_error_codes",
+      "label": "PLC 常见错误代码速查（排错必备）",
+      "type": "concept",
+      "properties": {
+        "stage": "middle",
+        "stage_label": "中段",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "PLC 调试中最常见的错误代码和解决方法，收藏备用。【S7-1200/1500 指示灯含义】- RUN/STOP 绿灯常亮：正常运行。- RUN/STOP 黄灯常亮：STOP 状态。- RUN/STOP 绿灯闪烁：启动中。- RUN/STOP 黄灯闪烁：正在下载/复位。- ERROR 红灯常亮：硬件故障，检查电源和模块。- ERROR 红灯闪烁：软件错误（程序问题），TIA Portal 在线诊断查看。- MAINT 黄灯常亮：需要维护（如电池电量低）。【TIA Portal 编译常见错误】- \"地址超出范围\"：变量地址超出 PLC 的地址空间。- \"数据类型不兼容\"：如把 INT 赋值给 BOOL。- \"重复的地址\"：两个变量用了同一个地址（如都用 %M0.0）。- \"块不存在\"：调用了不存在的 FB/FC。- \"背景数据块不存在\"：FB 调用时没有分配背景 DB。【下载常见错误】- \"无法建立连接\"：IP 地址不对、网线没插、防火墙阻止。- \"模块类型不匹配\"：项目中的 CPU 型号和实际不一致。- \"访问被拒绝\"：PLC 有密码保护。- \"存储空间不足\"：程序太大，PLC 内存不够。【运行时常见故障】- \"PLC 突然 STOP\"：检查诊断缓冲区（Diagnostics buffer），通常是因为程序错误。- \"输出不动作\"：检查输出点是否被强制、是否超出输出模块电流。- \"通信中断\"：检查网线、交换机、IP 地址冲突。- \"模拟量读数不准\"：检查接线、屏蔽、量程卡设置。来源：西门子 S7-1200 系统手册、TIA Portal 在线帮助、CSDN 排错帖。",
+        "notes": "排错是 PLC 工程师的核心能力之一。遇到问题先看诊断缓冲区，90% 的问题都能在这里找到答案。",
+        "code_examples": [
+          "# PLC 诊断缓冲区查看方法（TIA Portal）：\n# 1. 在线连接 PLC\n# 2. 右键 PLC -> 在线和诊断\n# 3. 选择「诊断缓冲区」-> 看到所有事件记录\n# 4. 红色事件 = 错误，黄色事件 = 警告，绿色事件 = 正常\n# 5. 点击每个事件查看详细信息\n\n# 常见错误代码速查（S7-1200/1500）：\n# 0x8001 = 编程错误（块不存在或参数错误）\n# 0x8002 = 访问错误（读写不存在的地址）\n# 0x8003 = 时间错误（定时器编号重复）\n# 0x8004 = 数据类型错误\n# 0x8081 = 通信错误（连接失败）\n# 0x8082 = 配置错误（硬件配置不一致）\n\n# 用 Python 读取 PLC 诊断信息（snap7）：\nimport snap7\nclient = snap7.client.Client()\nclient.connect('192.168.0.1', 0, 1)\n# 读取 CPU 状态\nstatus = client.get_cpu_state()\nprint(f'CPU 状态: {status}')  # S7CpuStatusUnknown=0x08, Run=0x08, Stop=0x04\n# 获取 CPU 信息\ninfo = client.get_cpu_info()\nprint(f'序列号: {info.SerialNumber.decode()}')\nclient.disconnect()"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "错误代码",
+          "排错",
+          "诊断",
+          "故障",
+          "指示灯",
+          "编译错误",
+          "下载错误"
+        ]
+      }
+    },
+    {
+      "id": "concept_english_terms",
+      "label": "工业自动化行业英语术语表（面试/看文档必备）",
+      "type": "concept",
+      "properties": {
+        "stage": "office",
+        "stage_label": "办公型岗位重点",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "工业自动化行业最常用的英语术语，面试、看英文文档、和外国工程师交流必备。【基础术语】- PLC: Programmable Logic Controller（可编程逻辑控制器）- HMI: Human Machine Interface（人机界面/触摸屏）- SCADA: Supervisory Control And Data Acquisition（监控与数据采集系统）- MES: Manufacturing Execution System（制造执行系统）- ERP: Enterprise Resource Planning（企业资源计划）- DCS: Distributed Control System（分布式控制系统）- RTU: Remote Terminal Unit（远程终端单元）【PLC 编程术语】- Ladder Diagram (LAD/LD): 梯形图- Function Block Diagram (FBD): 功能块图- Structured Text (ST/SCL): 结构化文本- Instruction List (IL): 指令表（已淘汰）- Sequential Function Chart (SFC): 顺序功能图- OB: Organization Block（组织块）- FB: Function Block（功能块）- FC: Function（函数）- DB: Data Block（数据块）- Scan Cycle: 扫描周期- Watchdog: 看门狗（监控扫描周期是否超时）【通信术语】- Profinet: 西门子工业以太网协议- Profibus: 西门子现场总线协议（已逐步淘汰）- Modbus TCP/RTU: 开放的工业通信协议- OPC UA: Open Platform Communications Unified Architecture（开放平台通信统一架构）- MQTT: Message Queuing Telemetry Transport（物联网消息协议）- Ethernet/IP: 以太网工业协议（罗克韦尔/AB 主推）- EtherCAT: 以太网控制自动化技术（倍福主推）【控制术语】- PID: Proportional-Integral-Derivative（比例-积分-微分控制）- Open Loop / Closed Loop: 开环/闭环控制- Setpoint (SP): 设定值- Process Variable (PV): 过程变量（实际值）- Control Variable (CV/MV): 控制变量/操纵变量- Deadband: 死区- Hysteresis: 滞回【传感器/执行器】- Proximity Sensor: 接近开关- Photoelectric Sensor: 光电传感器- Encoder: 编码器- Thermocouple: 热电偶- RTD (Resistance Temperature Detector): 热电阻- VFD (Variable Frequency Drive): 变频器- Servo Drive: 伺服驱动器来源：IEC 61131-3 标准、西门子官方手册、Industrial Automation Glossary。",
+        "notes": "面试时能说出这些英文术语的中文含义和英文全称，会大大加分。至少记住前 20 个最常见的。",
+        "code_examples": [
+          "# 面试中常见的英语术语问答：\n# Q: What is a PLC?\n# A: A PLC is a ruggedized computer used for industrial automation.\n#    It reads inputs, executes a program, and controls outputs.\n\n# Q: What is the scan cycle?\n# A: The scan cycle is the continuous loop of reading inputs,\n#    executing the program, and writing outputs. Typically 1-10ms.\n\n# Q: What is OPC UA?\n# A: OPC UA is a platform-independent communication protocol\n#    for industrial automation. It supports encryption, authentication,\n#    and information modeling.\n\n# Q: Difference between Profinet and Profibus?\n# A: Profinet is Ethernet-based (faster, more flexible),\n#    Profibus is serial-based (older, being phased out)."
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "英语",
+          "术语",
+          "面试",
+          "PLC",
+          "HMI",
+          "SCADA",
+          "MES",
+          "通信",
+          "传感器"
+        ]
+      }
+    },
+    {
+      "id": "concept_plc_resources",
+      "label": "PLC 学习资源大全（书籍/视频/网站/开源项目）",
+      "type": "concept",
+      "properties": {
+        "stage": "electrical",
+        "stage_label": "电气基础（零基础必读）",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "PLC 学习最全资源汇总，涵盖免费和付费资源，按推荐度排序。【免费在线教程（英文）】1. plcacademy.com —— 最系统免费的 PLC 教程，从零讲起。2. realpars.com —— 高质量视频课程，动画讲解非常直观。3. solisplc.com —— 结构化 PLC 学习路径。4. YouTube: RealPars 频道、Hegamurl 频道、PLC Programming 频道。【免费在线教程（中文）】1. B站搜索「西门子 PLC」「TIA Portal 教程」「阳胜峰」「PLC 入门」。2. 知乎搜索「PLC 学习路线」「PLC 入门教程」—— 有很多实战经验分享。3. CSDN 搜索「PLC 梯形图 案例」「TIA Portal 入门」—— 代码示例丰富。4. 工控论坛（gongkong.com）—— 国内最大的工业自动化社区。【推荐书籍】1. 《PLC 编程及应用》（廖常初 著）—— 中文 PLC 入门经典。2. 《西门子 S7-1200 PLC 编程及应用》（廖常初 著）—— 实操性很强。3. 《Automating with SIMATIC》（Hans Berger 著）—— 西门子官方参考书。4. 《IEC 61131-3: Programming Industrial Automation Systems》—— 标准参考。【开源项目（GitHub）】1. OpenPLC Editor & Runtime (github.com/Autonomy-Logic) —— 免费开源 PLC 软件。2. Beremiz (github.com/beremiz/beremiz) —— 开源 IEC 61131-3 IDE。3. snap7 (github.com/snap7/snap7) —— S7 通信 C++ 库。4. python-snap7 (github.com/gijzelaerr/python-snap7) —— Python S7 通信。5. pymodbus (github.com/pymodbus-dev/pymodbus) —— Python Modbus 库。6. opcua-asyncio (github.com/FreeOpcUa/opcua-asyncio) —— Python OPC UA 异步库。7. S7NetPlus (github.com/S7NetPlus/s7netplus) —— C# S7 通信库。8. libplctag (github.com/libplctag/libplctag) —— C 语言 PLC 通信库。【仿真软件】1. Factory IO (factoryio.com) —— 3D 工厂仿真，30 天试用，强烈推荐！2. PLCSIM Advanced —— 西门子高级仿真器（需要许可证）。3. CODESYS SoftPLC —— 把电脑变成 PLC 运行程序。【付费课程（按需选择）】1. Udemy: \"PLC Programming from Scratch\" —— Paul Lynn 的课程，评价很高。2. RealPars 会员 —— 每月约 $25，全部视频课程。3. 西门子 SITRAIN 培训 —— 官方培训，价格较高但有证书。来源：各网站官网、GitHub、B站、知乎。资源链接可能随时间变化，请自行搜索最新地址。",
+        "notes": "资源不在多，在于坚持。每天花 1-2 小时，3 个月可以有明显进步。建议先选定一个教程系统学完，不要东看一点西看一点。",
+        "code_examples": [
+          "# 推荐学习路径（自学，零基础 3 个月规划）：\n# 第 1-2 周：看 plcacademy.com 基础教程，了解 PLC 是什么\n# 第 3-4 周：安装 OpenPLC 或 CODESYS，动手写第一个梯形图\n# 第 5-6 周：学习定时器、计数器、比较指令，完成 10 个基础案例\n# 第 7-8 周：学习 SCL 语言，用结构化文本写程序\n# 第 9-10 周：学习 Modbus 通信，用 Python 读写 PLC 数据\n# 第 11-12 周：综合项目——Python + PLC + 数据库 数据采集系统\n\n# 每日学习建议：\n# - 早上 30 分钟：看视频教程（RealPars 或 B站）\n# - 下午 60 分钟：动手写代码（用 PLCSIM 或 OpenPLC 仿真）\n# - 晚上 30 分钟：整理笔记，回顾当天学的内容\n# 坚持 3 个月，能达到入门水平，可以应聘初级 PLC 岗位。"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "资源",
+          "教程",
+          "书籍",
+          "开源",
+          "GitHub",
+          "视频",
+          "学习路径",
+          "3个月规划"
+        ]
+      }
+    },
+    {
+      "id": "project_python_plc_logger",
+      "label": "实战项目：Python PLC 数据采集与可视化（完整代码）",
+      "type": "concept",
+      "properties": {
+        "stage": "project",
+        "stage_label": "实战项目（组合技能）",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "用 Python 从零搭建一个 PLC 数据采集 + 可视化系统，适合零基础入门 MES 开发。【功能】1. 通过 Modbus TCP 读取 PLC 数据（温度/压力/速度/产量）2. 数据存入 CSV 文件（简单可靠，无需数据库）3. 用 Matplotlib 生成实时趋势图4. 异常值报警（超过阈值输出报警信息）5. Web 仪表盘（Flask 简单展示）【技术栈】Python 3.10+、pymodbus、matplotlib、pandas、Flask。【适合场景】学习项目、小型产线监控、无 MES 系统的工厂。【扩展方向】1. CSV -> InfluxDB（时序数据库，性能更好）2. Matplotlib -> Grafana（专业可视化）3. 单机 -> Docker Compose（容器化部署）4. 本地 -> 云平台（MQTT 上报到阿里云/腾讯云 IoT）来源：pymodbus 文档 (pymodbus.readthedocs.io)、matplotlib 文档、Flask 文档。",
+        "notes": "这个项目是 MES 数据采集的「最小可行版本」（MVP）。掌握了这个，再升级到 InfluxDB+Grafana+Docker 就很轻松了。",
+        "code_examples": [
+          "# PLC 数据采集完整项目（Python）\n# 文件：plc_logger.py\n# 来源：基于 pymodbus + matplotlib 实现\nimport csv, time, os\nfrom datetime import datetime\nfrom pymodbus.client import ModbusTcpClient\n\n# ===== 配置 =====\nPLC_IP = '192.168.1.100'\nPLC_PORT = 502\nSLAVE_ID = 1\nCSV_FILE = 'plc_data.csv'\nLOG_INTERVAL = 1  # 采集间隔（秒）\n\n# 寄存器映射（地址->变量名->单位->报警阈值）\nTAGS = [\n    {'addr': 0, 'name': '温度', 'unit': '°C', 'alarm_high': 80},\n    {'addr': 2, 'name': '压力', 'unit': 'MPa', 'alarm_high': 1.5},\n    {'addr': 4, 'name': '速度', 'unit': 'rpm', 'alarm_high': 3000},\n    {'addr': 6, 'name': '产量', 'unit': '件', 'alarm_low': 10},\n]\n\n# ===== 初始化 CSV =====\nif not os.path.exists(CSV_FILE):\n    with open(CSV_FILE, 'w', newline='') as f:\n        writer = csv.writer(f)\n        headers = ['时间'] + [t['name'] for t in TAGS]\n        writer.writerow(headers)\n\n# ===== 主循环 =====\nclient = ModbusTcpClient(PLC_IP, port=PLC_PORT)\nclient.connect()\nprint(f'PLC 数据采集启动，IP={PLC_IP}')\nprint('按 Ctrl+C 停止')\n\ntry:\n    while True:\n        now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')\n        row = [now]\n        alarms = []\n\n        for tag in TAGS:\n            result = client.read_holding_registers(\n                tag['addr'], 2, slave=SLAVE_ID)\n            if not result.isError():\n                # 两个寄存器拼成 float（简化处理）\n                value = result.registers[0] / 10.0\n                row.append(value)\n                print(f\"  {tag['name']}: {value} {tag['unit']}\")\n\n                # 报警检测\n                if 'alarm_high' in tag and value > tag['alarm_high']:\n                    alarms.append(f\"{tag['name']}过高: {value}{tag['unit']}\")\n                if 'alarm_low' in tag and value < tag['alarm_low']:\n                    alarms.append(f\"{tag['name']}过低: {value}{tag['unit']}\")\n            else:\n                row.append(None)\n                alarms.append(f\"{tag['name']}读取失败\")\n\n        # 写入 CSV\n        with open(CSV_FILE, 'a', newline='') as f:\n            csv.writer(f).writerow(row)\n\n        # 输出报警\n        for alarm in alarms:\n            print(f'  *** 报警: {alarm} ***')\n\n        time.sleep(LOG_INTERVAL)\n\nexcept KeyboardInterrupt:\n    print('数据采集已停止')\nfinally:\n    client.close()"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "项目",
+          "Python",
+          "数据采集",
+          "Modbus",
+          "CSV",
+          "报警",
+          "可视化",
+          "MVP",
+          "MES"
+        ]
+      }
     }
   ],
   "edges": [
@@ -2237,6 +2497,87 @@
     {
       "id": "concept_plc_security__has_status__status_todo",
       "source": "concept_plc_security",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_what_is_plc__has_status__status_todo",
+      "source": "concept_what_is_plc",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_plc_tools__has_status__status_todo",
+      "source": "concept_plc_tools",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_tia_tour__has_status__status_todo",
+      "source": "concept_tia_tour",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_plc_download__has_status__status_todo",
+      "source": "concept_plc_download",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_lad_20__has_status__status_todo",
+      "source": "concept_lad_20",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_error_codes__has_status__status_todo",
+      "source": "concept_error_codes",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_english_terms__has_status__status_todo",
+      "source": "concept_english_terms",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_plc_resources__has_status__status_todo",
+      "source": "concept_plc_resources",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "project_python_plc_logger__has_status__status_todo",
+      "source": "project_python_plc_logger",
       "target": "status_todo",
       "type": "has_status",
       "properties": {
@@ -3498,6 +3839,240 @@
       "id": "concept_plc_security__depends_on__concept_s7_communication",
       "source": "concept_plc_security",
       "target": "concept_s7_communication",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_what_is_plc__prerequisite_for__concept_electrical_basics",
+      "source": "concept_what_is_plc",
+      "target": "concept_electrical_basics",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_electrical_basics__depends_on__concept_what_is_plc",
+      "source": "concept_electrical_basics",
+      "target": "concept_what_is_plc",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_plc_tools__prerequisite_for__concept_electrical_basics",
+      "source": "concept_plc_tools",
+      "target": "concept_electrical_basics",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_electrical_basics__depends_on__concept_plc_tools",
+      "source": "concept_electrical_basics",
+      "target": "concept_plc_tools",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_plc_resources__prerequisite_for__concept_electrical_basics",
+      "source": "concept_plc_resources",
+      "target": "concept_electrical_basics",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_electrical_basics__depends_on__concept_plc_resources",
+      "source": "concept_electrical_basics",
+      "target": "concept_plc_resources",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_plc_hardware__prerequisite_for__concept_tia_tour",
+      "source": "concept_plc_hardware",
+      "target": "concept_tia_tour",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_tia_tour__depends_on__concept_plc_hardware",
+      "source": "concept_tia_tour",
+      "target": "concept_plc_hardware",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_tia_tour__prerequisite_for__concept_plc_download",
+      "source": "concept_tia_tour",
+      "target": "concept_plc_download",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_plc_download__depends_on__concept_tia_tour",
+      "source": "concept_plc_download",
+      "target": "concept_tia_tour",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_iec61131__prerequisite_for__concept_plc_download",
+      "source": "concept_iec61131",
+      "target": "concept_plc_download",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_plc_download__depends_on__concept_iec61131",
+      "source": "concept_plc_download",
+      "target": "concept_iec61131",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_lad__prerequisite_for__concept_lad_20",
+      "source": "concept_lad",
+      "target": "concept_lad_20",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_lad_20__depends_on__concept_lad",
+      "source": "concept_lad_20",
+      "target": "concept_lad",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_lad_examples__prerequisite_for__concept_lad_20",
+      "source": "concept_lad_examples",
+      "target": "concept_lad_20",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_lad_20__depends_on__concept_lad_examples",
+      "source": "concept_lad_20",
+      "target": "concept_lad_examples",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_plc_download__prerequisite_for__concept_error_codes",
+      "source": "concept_plc_download",
+      "target": "concept_error_codes",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_error_codes__depends_on__concept_plc_download",
+      "source": "concept_error_codes",
+      "target": "concept_plc_download",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_career_roadmap__prerequisite_for__concept_english_terms",
+      "source": "concept_career_roadmap",
+      "target": "concept_english_terms",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_english_terms__depends_on__concept_career_roadmap",
+      "source": "concept_english_terms",
+      "target": "concept_career_roadmap",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_pycomm__prerequisite_for__project_python_plc_logger",
+      "source": "concept_pycomm",
+      "target": "project_python_plc_logger",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "project_python_plc_logger__depends_on__concept_pycomm",
+      "source": "project_python_plc_logger",
+      "target": "concept_pycomm",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "protocol_modbus__prerequisite_for__project_python_plc_logger",
+      "source": "protocol_modbus",
+      "target": "project_python_plc_logger",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "project_python_plc_logger__depends_on__protocol_modbus",
+      "source": "project_python_plc_logger",
+      "target": "protocol_modbus",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "project_mes_dashboard__prerequisite_for__project_python_plc_logger",
+      "source": "project_mes_dashboard",
+      "target": "project_python_plc_logger",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "project_python_plc_logger__depends_on__project_mes_dashboard",
+      "source": "project_python_plc_logger",
+      "target": "project_mes_dashboard",
       "type": "depends_on",
       "properties": {
         "relation": "依赖"
