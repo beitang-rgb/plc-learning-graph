@@ -1,0 +1,1810 @@
+{
+  "metadata": {
+    "source": "plc_learning_roadmap",
+    "version": "1.0.0",
+    "description": "PLC 学习知识图谱 - 基于用户背景预填的学习路线图",
+    "learner_profile": {
+      "track": "文科/历史类",
+      "goal": "工业软件工程师/MES工程师/工业互联网工程师",
+      "current_skills": [
+        "Python",
+        "C#基础",
+        "AI工具"
+      ],
+      "learning": "Siemens S7 PLC, HMI, 变频器, Modbus/OPC UA"
+    },
+    "generated_at": "2026-07-28T15:54:53"
+  },
+  "nodes": [
+    {
+      "id": "status_mastered",
+      "label": "已掌握",
+      "type": "status",
+      "properties": {
+        "status": "mastered",
+        "status_label": "已掌握"
+      }
+    },
+    {
+      "id": "status_learning",
+      "label": "学习中",
+      "type": "status",
+      "properties": {
+        "status": "learning",
+        "status_label": "学习中"
+      }
+    },
+    {
+      "id": "status_todo",
+      "label": "待学习",
+      "type": "status",
+      "properties": {
+        "status": "todo",
+        "status_label": "待学习"
+      }
+    },
+    {
+      "id": "status_question",
+      "label": "有疑问",
+      "type": "status",
+      "properties": {
+        "status": "question",
+        "status_label": "有疑问"
+      }
+    },
+    {
+      "id": "concept_variable",
+      "label": "变量与数据类型",
+      "type": "concept",
+      "properties": {
+        "stage": "basic",
+        "stage_label": "基础",
+        "status": "mastered",
+        "status_label": "已掌握",
+        "mastery_level": 80,
+        "description": "PLC 变量类型：BOOL/INT/REAL/STRING/TIME/DINT 等。区分全局变量（DB/MB）与局部变量（L 区）。",
+        "notes": "",
+        "code_examples": [
+          "// 声明变量\nVAR\n  bStart : BOOL := FALSE;\n  nSpeed : INT := 0;\n  rTemp  : REAL := 25.5;\n  sMsg   : STRING[20];\nEND_VAR"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "变量",
+          "数据类型",
+          "基础"
+        ]
+      }
+    },
+    {
+      "id": "concept_addressing",
+      "label": "寻址方式 I/Q/M/DB",
+      "type": "concept",
+      "properties": {
+        "stage": "basic",
+        "stage_label": "基础",
+        "status": "learning",
+        "status_label": "学习中",
+        "mastery_level": 50,
+        "description": "S7 寻址方式：绝对地址（I0.0/Q0.0/MW10/DB1.DBX0.0）与符号地址。理解输入/输出/中间存储/数据块的区别。",
+        "notes": "记忆 I/Q/M 区别：I=输入，Q=输出，M=中间存储",
+        "code_examples": [
+          "// 绝对寻址\nA I 0.0       // 读取输入点 0.0\n= Q 0.0       // 输出到 0.0\nL MW 10       // 加载中间字 MW10\nT DB1.DBW 2   // 传送到 DB1 的字 2\n\n// 符号寻址（推荐）\n\"Motor\".\"Start\" := TRUE;"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "寻址",
+          "I/Q/M",
+          "DB",
+          "基础"
+        ]
+      }
+    },
+    {
+      "id": "concept_lad",
+      "label": "LAD 梯形图",
+      "type": "concept",
+      "properties": {
+        "stage": "middle",
+        "stage_label": "中段",
+        "status": "learning",
+        "status_label": "学习中",
+        "mastery_level": 40,
+        "description": "梯形图编程，电气工程师友好。常开/常闭触点、线圈、定时器、计数器。",
+        "notes": "",
+        "code_examples": [
+          "// LAD（梯形图）\n// |   I0.0     Q0.0   |\n// |---| |-------( )---|\n//     |               |\n// |   I0.1           |\n// |---|/|------------|\n\n// SCL 实现 LAD 逻辑\nIF \"Start\" AND NOT \"Stop\" THEN\n  \"Motor\" := TRUE;\nEND_IF;"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "LAD",
+          "梯形图",
+          "编程语言"
+        ]
+      }
+    },
+    {
+      "id": "concept_fbd",
+      "label": "FBD 功能块图",
+      "type": "concept",
+      "properties": {
+        "stage": "middle",
+        "stage_label": "中段",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 10,
+        "description": "功能块图，类似数字电路。AND/OR/NOT 逻辑门 + 功能块。",
+        "notes": "",
+        "code_examples": [
+          "// FBD 以图形方式连接功能块\n// 类似 SCL 的布尔运算\n\"Motor\" := \"Start\" AND NOT \"Stop\";\n\"Alarm\" := (\"Temp\" > 80) OR (\"Pressure\" > 100);"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "FBD",
+          "功能块图",
+          "编程语言"
+        ]
+      }
+    },
+    {
+      "id": "concept_scl",
+      "label": "SCL 结构化文本",
+      "type": "concept",
+      "properties": {
+        "stage": "middle",
+        "stage_label": "中段",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 5,
+        "description": "结构化控制语言，类似 Pascal/C。适合复杂算法、循环、数组处理。办公型岗位推荐掌握。",
+        "notes": "SCL 是办公型岗位的竞争力，比 LAD 更适合复杂逻辑",
+        "code_examples": [
+          "// SCL 示例：FOR 循环求数组平均值\n#avg := 0;\nFOR #i := 1 TO 10 DO\n  #avg := #avg + \"DataDB\".values[#i];\nEND_FOR;\n#avg := #avg / 10;\n\n// CASE 分支\nCASE #state OF\n  0: \"Idle\"();\n  1: \"Running\"();\n  2: \"Error\"();\nEND_CASE;"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "SCL",
+          "结构化文本",
+          "编程语言",
+          "办公型"
+        ]
+      }
+    },
+    {
+      "id": "concept_ob",
+      "label": "OB 组织块",
+      "type": "concept",
+      "properties": {
+        "stage": "middle",
+        "stage_label": "中段",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 5,
+        "description": "组织块是操作系统的接口。OB1=主循环，OB100=启动，OB35=定时中断，OB82=诊断中断。",
+        "notes": "",
+        "code_examples": [
+          "// OB100（启动组织块）\n// 仅在 PLC 启动时执行一次，用于初始化\n\"DataDB\".counter := 0;\n\"DataDB\".init := TRUE;\n\n// OB1（主循环）\n// 周期性执行，是主程序入口\nCALL \"FC_Control\""
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "OB",
+          "组织块",
+          "程序结构"
+        ]
+      }
+    },
+    {
+      "id": "concept_fb",
+      "label": "FB 功能块",
+      "type": "concept",
+      "properties": {
+        "stage": "middle",
+        "stage_label": "中段",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 5,
+        "description": "功能块带背景数据块（实例 DB），可保存内部状态。适合电机控制、PID 等有状态的逻辑。",
+        "notes": "FB vs FC：FB 有记忆（背景 DB），FC 无状态",
+        "code_examples": [
+          "// FB 声明\nFUNCTION_BLOCK \"MotorCtrl\"\nVAR_INPUT\n  bStart : BOOL;\n  bStop  : BOOL;\nEND_VAR\nVAR_OUTPUT\n  bRun   : BOOL;\nEND_VAR\nVAR\n  tonDelay : TON;  // 定时器实例\nEND_VAR\n// FB 调用（需指定背景 DB）\nCALL \"MotorCtrl\", DB10\n  bStart := \"Start_Btn\",\n  bStop  := \"Stop_Btn\",\n  bRun   => \"Motor_Out\""
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "FB",
+          "功能块",
+          "程序结构",
+          "背景DB"
+        ]
+      }
+    },
+    {
+      "id": "concept_fc",
+      "label": "FC 功能",
+      "type": "concept",
+      "properties": {
+        "stage": "middle",
+        "stage_label": "中段",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 5,
+        "description": "功能（子程序），无背景数据块，无内部状态。适合纯计算、类型转换、工具函数。",
+        "notes": "",
+        "code_examples": [
+          "// FC 声明\nFUNCTION \"CalcAvg\" : REAL\nVAR_INPUT\n  a, b, c : REAL;\nEND_VAR\n// FC 调用\n#result := \"CalcAvg\"(a:=1.0, b:=2.0, c:=3.0);"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "FC",
+          "功能",
+          "程序结构"
+        ]
+      }
+    },
+    {
+      "id": "concept_db",
+      "label": "DB 数据块",
+      "type": "concept",
+      "properties": {
+        "stage": "middle",
+        "stage_label": "中段",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 5,
+        "description": "数据块用于存储用户数据。全局 DB（共享数据）vs 实例 DB（FB 的背景数据）。",
+        "notes": "",
+        "code_examples": [
+          "// 全局 DB 声明（DB1）\nDATA_BLOCK \"RecipeDB\"\nSTRUCT\n  setTemp : REAL := 25.0;\n  setSpeed : INT := 1500;\n  parts : ARRAY[1..100] OF INT;\nEND_STRUCT\nBEGIN\nEND_DATA_BLOCK\n\n// 访问\n\"RecipeDB\".setTemp := 30.0;"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "DB",
+          "数据块",
+          "程序结构"
+        ]
+      }
+    },
+    {
+      "id": "skill_upload_download",
+      "label": "上传下载程序",
+      "type": "skill",
+      "properties": {
+        "stage": "applied",
+        "stage_label": "应用",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "通过 TIA Portal 上传/下载 PLC 程序。在线模式连接 PLC 后可上传程序到 PG 或下载到 PLC。",
+        "notes": "",
+        "code_examples": [
+          "# TIA Portal 操作步骤：\n# 1. 建立在线连接（设备组态→网络视图→在线访问）\n# 2. 上传：在线→上传设备为站\n# 3. 下载：选中块→下载到设备\n# CLI 命令（TIA Openness API）：\n# Siemens.Simatic.Plc.Upload(project, device)"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "上传下载",
+          "在线",
+          "TIA Portal"
+        ]
+      }
+    },
+    {
+      "id": "skill_diagnose",
+      "label": "在线诊断",
+      "type": "skill",
+      "properties": {
+        "stage": "applied",
+        "stage_label": "应用",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "在线诊断：查看 CPU 状态、模块信息、诊断缓冲区、IO 设备状态。是 MES/工业互联网工程师必备技能。",
+        "notes": "诊断缓冲区是排查故障的第一手资料",
+        "code_examples": [
+          "# TIA Portal 在线诊断：\n# 1. 在线访问→诊断→诊断缓冲区\n# 2. 查看事件（模块故障、OB 调用、Stop 原因）\n\n# 通过 Python 读取诊断（snap7）：\nimport snap7\nclient = snap7.client.Client()\nclient.connect('192.168.0.1', 0, 1)\ndiag = client.get_cpu_state()  # 'Run'/'Stop'/'Unknown'"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "诊断",
+          "在线",
+          "故障排查"
+        ]
+      }
+    },
+    {
+      "id": "skill_vat",
+      "label": "变量表强制",
+      "type": "skill",
+      "properties": {
+        "stage": "applied",
+        "stage_label": "应用",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "变量表（VAT）用于在线监控和强制变量值。调试时强制输入信号，无需实际硬件。",
+        "notes": "",
+        "code_examples": [
+          "# TIA Portal 操作：\n# 1. 创建变量表（VAT）\n# 2. 添加要监控的变量\n# 3. 在线→监控与强制→修改值\n# 强制 I0.0 = TRUE 测试逻辑\n\"Motor\".\"Start\" := TRUE;  // 强制启动信号"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "变量表",
+          "VAT",
+          "强制",
+          "调试"
+        ]
+      }
+    },
+    {
+      "id": "concept_hmi",
+      "label": "HMI 画面组态",
+      "type": "concept",
+      "properties": {
+        "stage": "applied",
+        "stage_label": "应用",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "人机界面画面组态：按钮、指示灯、文本、趋势图、报警。",
+        "notes": "",
+        "code_examples": [
+          "# TIA Portal WinCC 画面组态：\n# 1. 添加 HMI 设备（TP700 Comfort）\n# 2. 连接变量（PLC 变量表）\n# 3. 拖拽控件到画面\n# 4. 绑定变量（按钮→Start，指示灯→Motor）\n# 5. 配置事件（按下→置位 Start）"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "HMI",
+          "WinCC",
+          "画面组态"
+        ]
+      }
+    },
+    {
+      "id": "concept_vfd",
+      "label": "变频器参数化",
+      "type": "concept",
+      "properties": {
+        "stage": "applied",
+        "stage_label": "应用",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "变频器（SINAMICS G120）参数化：控制方式、频率给定、加减速、报文配置。",
+        "notes": "",
+        "code_examples": [
+          "# SINAMICS G120 关键参数（通过 BOP 面板或 StartDrive）：\n# P0700 = 5（Profinet 控制）\n# P1000 = 6（过程数据给定频率）\n# P1080 = 0（最低频率 Hz）\n# P1082 = 50（最高频率 Hz）\n# P1120 = 5（加速时间 s）\n# P1121 = 5（减速时间 s）\n\n# Profinet 报文：标准报文 1（PKW+PZD-2）"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "变频器",
+          "SINAMICS",
+          "参数化",
+          "G120"
+        ]
+      }
+    },
+    {
+      "id": "protocol_modbus",
+      "label": "Modbus 通信协议",
+      "type": "protocol",
+      "properties": {
+        "stage": "applied",
+        "stage_label": "应用",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 10,
+        "description": "工业通信事实标准。Modbus TCP（以太网）vs RTU（串口）。简单、开放、广泛支持。MES 数据采集常用。推荐库：pymodbus（⭐2740，github.com/pymodbus-dev/pymodbus）、pyModbusTCP（⭐347，更简洁）。",
+        "notes": "",
+        "code_examples": [
+          "# pymodbus 读取 Modbus TCP（3.x 当前 API，unit 已改名为 slave）\n# 来源：github.com/pymodbus-dev/pymodbus\nfrom pymodbus.client import ModbusTcpClient\n\nclient = ModbusTcpClient('192.168.1.100', port=502)\nclient.connect()\n\n# 读保持寄存器（功能码 03），地址 0 起 10 个字\nresult = client.read_holding_registers(address=0, count=10, slave=1)\nif not result.isError():\n    print('寄存器值:', result.registers)  # [0, 100, 200, ...]\n\n# 写多个寄存器（功能码 16）\nclient.write_registers(address=0, values=[1000, 2000, 3000], slave=1)\n\nclient.close()",
+          "# pyModbusTCP 封装浮点数读写（更简洁的入门方案）\n# 来源：github.com/sourceperl/pyModbusTCP/examples/client_float.py\nfrom pyModbusTCP.client import ModbusClient\nfrom pyModbusTCP.utils import decode_ieee, encode_ieee, \\\n    long_list_to_word, word_list_to_long\n\nclass FloatModbusClient(ModbusClient):\n    def read_float(self, address, number=1):\n        reg_l = self.read_holding_registers(address, number * 2)\n        if reg_l:\n            return [decode_ieee(f) for f in word_list_to_long(reg_l)]\n        return None\n\n    def write_float(self, address, floats_list):\n        b32_l = [encode_ieee(f) for f in floats_list]\n        b16_l = long_list_to_word(b32_l)\n        return self.write_multiple_registers(address, b16_l)\n\nc = FloatModbusClient(host='localhost', port=502, auto_open=True)\nc.write_float(0, [10.0])           # 写浮点 10.0 到地址 0\nprint(c.read_float(0, 10))         # 读地址 0~9 共 10 个浮点\nc.close()"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "Modbus",
+          "TCP",
+          "RTU",
+          "通信",
+          "pymodbus",
+          "pyModbusTCP"
+        ]
+      }
+    },
+    {
+      "id": "protocol_opcua",
+      "label": "OPC UA",
+      "type": "protocol",
+      "properties": {
+        "stage": "advanced",
+        "stage_label": "进阶",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "工业 4.0 标准协议。自带安全、信息模型、订阅机制。MES/SCADA 数据采集中枢。推荐库：opcua-asyncio（⭐1450，github.com/FreeOpcUa/opcua-asyncio）。调试工具：opcua-client-gui（⭐663，免费 GUI）。",
+        "notes": "OPC UA 是 MES/工业互联网方向的核心技能",
+        "code_examples": [
+          "# OPC UA 异步客户端（asyncio，推荐）\n# 来源：github.com/FreeOpcUa/opcua-asyncio/examples/client-minimal.py\nimport asyncio\nfrom asyncua import Client\n\nurl = 'opc.tcp://192.168.1.50:4840/freeopcua/server/'\nnamespace = 'http://examples.freeopcua.github.io'\n\nasync def main():\n    async with Client(url=url) as client:\n        nsidx = await client.get_namespace_index(namespace)\n        # 按路径定位变量节点\n        var = await client.nodes.root.get_child(\n            f'0:Objects/{nsidx}:MyObject/{nsidx}:MyVariable')\n        value = await var.read_value()\n        print(f'当前值: {value}')\n        await var.write_value(value - 50)  # 写入新值\n        # 调用服务器方法\n        res = await client.nodes.objects.call_method(f'{nsidx}:ServerMethod', 5)\n        print(f'方法返回: {res}')\n\nasyncio.run(main())",
+          "# OPC UA 服务器（暴露变量给客户端订阅）\n# 来源：github.com/FreeOpcUa/opcua-asyncio/examples/server-minimal.py\nimport asyncio, logging\nfrom asyncua import Server, ua\nfrom asyncua.common.methods import uamethod\n\n@uamethod\ndef func(parent, value):\n    return value * 2\n\nasync def main():\n    server = Server()\n    await server.init()\n    server.set_endpoint('opc.tcp://0.0.0.0:4840/freeopcua/server/')\n    uri = 'http://examples.freeopcua.github.io'\n    idx = await server.register_namespace(uri)\n    myobj = await server.nodes.objects.add_object(idx, 'MyObject')\n    myvar = await myobj.add_variable(idx, 'MyVariable', 6.7)\n    await myvar.set_writable()  # 允许客户端写\n    async with server:\n        while True:\n            await asyncio.sleep(1)\n            await myvar.write_value(await myvar.get_value() + 0.1)\n\nasyncio.run(main())"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "OPC UA",
+          "工业4.0",
+          "MES",
+          "订阅",
+          "opcua-asyncio"
+        ]
+      }
+    },
+    {
+      "id": "protocol_profinet",
+      "label": "Profinet",
+      "type": "protocol",
+      "properties": {
+        "stage": "advanced",
+        "stage_label": "进阶",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "西门子工业以太网协议。实时（RT）和等时同步（IRT）。GSDML 文件描述设备特性。",
+        "notes": "",
+        "code_examples": [
+          "# TIA Portal 配置 Profinet：\n# 1. 设备组态→添加设备（如 ET200MP）\n# 2. 分配 Profinet 名称（设备名）和 IP\n# 3. 设置子网（PN/IE_1）\n# 4. 导入 GSDML（第三方设备）\n# 5. 配置报文（标准报文、西门子报文）\n\n# Python 通过 pycomm3 连接（Profinet 网络上的 PLC）：\nfrom pycomm3 import SLCDriver\nwith SLCDriver(path='192.168.1.10/1') as plc:\n    plc.read('Tag1')  # 读取符号标签"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "Profinet",
+          "实时",
+          "GSDML",
+          "西门子"
+        ]
+      }
+    },
+    {
+      "id": "concept_mes",
+      "label": "MES 数据采集",
+      "type": "concept",
+      "properties": {
+        "stage": "advanced",
+        "stage_label": "进阶",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "制造执行系统数据采集。PLC 数据 → OPC UA → MQTT → MES 平台。OEE 计算、追溯、报警管理。推荐参考：thingsboard-gateway（⭐2162）、automation-gateway（⭐298，OPC UA→MQTT/GraphQL）、TopoData（⭐240，C# 完整 MES 中间件）。",
+        "notes": "这是工业互联网工程师的核心工作场景。完整管道见 skill_mes_pipeline 节点",
+        "code_examples": [
+          "# MES 边缘网关：OPC UA → MQTT → MES 平台\n# 架构参考：github.com/thingsboard/thingsboard-gateway\n#           github.com/vogler75/automation-gateway\nimport asyncio, json\nimport paho.mqtt.client as mqtt\nfrom asyncua import Client\n\nMQTT_BROKER = 'mes.company.com'\nOPCUA_URL = 'opc.tcp://192.168.1.50:4840'\nTAGS = {\n    'ns=2;s=Temperature': 'factory/line1/temp',\n    'ns=2;s=Pressure':    'factory/line1/pressure',\n    'ns=2;s=Speed':       'factory/line1/speed',\n}\n\nmqtt_client = mqtt.Client()\nmqtt_client.connect(MQTT_BROKER, 1883)\nmqtt_client.loop_start()\n\nasync def collect():\n    async with Client(url=OPCUA_URL) as opcua:\n        nodes = {tag: await opcua.get_node(tag) for tag in TAGS}\n        while True:\n            payload = {}\n            for tag, topic in TAGS.items():\n                payload[topic.split('/')[-1]] = await nodes[tag].read_value()\n            # 一次性上报整条产线数据\n            mqtt_client.publish('factory/line1/telemetry',\n                                json.dumps(payload), qos=1)\n            await asyncio.sleep(1)  # 1 秒采集周期\n\nasyncio.run(collect())"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "MES",
+          "数据采集",
+          "工业互联网",
+          "OPC UA",
+          "MQTT",
+          "thingsboard-gateway"
+        ]
+      }
+    },
+    {
+      "id": "concept_iec61131",
+      "label": "IEC 61131-3 标准",
+      "type": "concept",
+      "properties": {
+        "stage": "basic",
+        "stage_label": "基础",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "PLC 编程国际标准。定义 5 种编程语言：LD（梯形图）、FBD（功能块图）、SFC（顺序功能图）、ST（结构化文本）、IL（指令表）。西门子 SCL 对应 ST，LAD 对应 LD。理解标准后可跨厂商迁移。推荐参考：OpenPLC（⭐1570）、beremiz（⭐420）。",
+        "notes": "理解 IEC 61131-3 是跨厂商迁移的关键",
+        "code_examples": [
+          "# IEC 61131-3 五种语言对应关系：\n# LD  (Ladder Diagram)        - 梯形图，电气工程师友好\n# FBD (Function Block Diagram)- 功能块图，类似数字电路\n# SFC (Sequential Function Chart) - 顺序功能图，流程控制\n# ST  (Structured Text)       - 结构化文本，类似 Pascal\n# IL  (Instruction List)      - 指令表，类似汇编（已少用）\n\n# 西门子 TIA Portal 对应：\n# LAD → LD\n# FBD → FBD\n# SCL → ST\n# Graph → SFC\n# S7-Graph / S7-SFC 可在 TIA Portal 中使用"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "IEC61131",
+          "标准",
+          "OpenPLC",
+          "beremiz"
+        ]
+      }
+    },
+    {
+      "id": "concept_plc_sim",
+      "label": "无硬件 PLC 仿真学习",
+      "type": "concept",
+      "properties": {
+        "stage": "basic",
+        "stage_label": "基础",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "无硬件学习 PLC 编程的方案。OpenPLC v4（⭐1570，github.com/Autonomy-Logic/openplc-runtime）- 开源 PLC 运行时，支持 IEC 61131-3 五种语言，可在 PC/树莓派/Docker 运行。PLCSIM Advanced - 西门子官方仿真，支持 OPC UA Server。GRFICSv3（⭐200）- 含 OpenPLC + 3D 仿真 + SCADA 的实训环境。",
+        "notes": "文科生 381 分升大专生几乎不可能自购 S7-1200（2000+元），这是无硬件学习的关键",
+        "code_examples": [
+          "# OpenPLC v4 Docker 部署（无硬件学习最佳方案）：\n# docker run -it --rm -p 8080:8080 -p 4840:4840 \\\n#   openplc/openplc-v4:latest\n\n# OpenPLC Editor 安装（编写 IEC 61131-3 程序）：\n# Windows: 下载 github.com/Autonomy-Logic/openplc-editor/releases\n# Linux:   sudo apt install openplc-editor\n\n# PLCSIM Advanced 启用 OPC UA Server（仿真 S7-1500）：\n# 1. TIA Portal → 选中 S7-1500 → 开始仿真\n# 2. PLCSIM Advanced → Instance → Digital Twin\n# 3. 启用 OPC UA Server\n# 4. 用 opcua-client-gui 连接 opc.tcp://localhost:4840\n\n# Python 连接 PLCSIM Advanced 的 OPC UA Server：\nimport asyncio\nfrom asyncua import Client\n\nasync def read_sim_plc():\n    async with Client(url='opc.tcp://localhost:4840') as client:\n        node = client.get_node('ns=3;s=MyVariable')\n        val = await node.read_value()\n        print(f'仿真 PLC 值: {val}')\n\nasyncio.run(read_sim_plc())"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "OpenPLC",
+          "PLCSIM",
+          "仿真",
+          "无硬件学习",
+          "Docker",
+          "办公型"
+        ]
+      }
+    },
+    {
+      "id": "skill_mes_pipeline",
+      "label": "MES 数据采集完整管道",
+      "type": "skill",
+      "properties": {
+        "stage": "office",
+        "stage_label": "办公型岗位重点",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "完整 MES 数据采集管道架构。协议适配器模式（OPC UA/Modbus/S7 → 统一数据模型）→ 数据转换器 → 时序数据库（InfluxDB/QuestDB/TimescaleDB）→ MQTT/Kafka 上报 → MES 平台。推荐参考：thingsboard-gateway（⭐2162）、TopoData（⭐240）、automation-gateway（⭐298，25 万值/秒）。",
+        "notes": "这是工业互联网工程师的核心竞争力，参考 thingsboard-gateway 架构",
+        "code_examples": [
+          "# MES 数据采集管道架构（完整版）：\n#\n#  ┌─────────┐  OPC UA   ┌──────────┐  MQTT   ┌──────────┐\n#  │  PLC    │ ────────→ │  Gateway │ ──────→ │   MES    │\n#  │ S7-1500 │  Modbus   │  (Python)│  Kafka  │  Platform│\n#  └─────────┘  S7Comm   └──────────┘         └──────────┘\n#                                    │\n#                                    ↓\n#                          ┌────────────────┐\n#                          │ InfluxDB/QuestDB│  时序数据库\n#                          └────────────────┘\n\n# 协议适配器模式（参考 thingsboard-gateway 架构）：\nfrom abc import ABC, abstractmethod\n\nclass ProtocolAdapter(ABC):\n    @abstractmethod\n    async def read_tag(self, tag: str):\n        pass\n\nclass OpcUaAdapter(ProtocolAdapter):\n    def __init__(self, url):\n        self.url = url\n    async def read_tag(self, tag: str):\n        from asyncua import Client\n        async with Client(url=self.url) as client:\n            return await client.get_node(tag).read_value()\n\nclass ModbusAdapter(ProtocolAdapter):\n    def __init__(self, host, port, slave):\n        self.host, self.port, self.slave = host, port, slave\n    async def read_tag(self, tag: str):\n        from pymodbus.client import ModbusTcpClient\n        with ModbusTcpClient(self.host, self.port) as c:\n            return c.read_holding_registers(\n                address=int(tag), count=1, slave=self.slave).registers[0]"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "MES",
+          "管道",
+          "thingsboard-gateway",
+          "InfluxDB",
+          "Kafka",
+          "办公型"
+        ]
+      }
+    },
+    {
+      "id": "concept_pycomm",
+      "label": "Python 与 PLC 通信",
+      "type": "concept",
+      "properties": {
+        "stage": "office",
+        "stage_label": "办公型岗位重点",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "用 Python 与 PLC 通信。推荐库：python-snap7（⭐824，S7 协议，github.com/gijzelaerr/python-snap7）、pymodbus（⭐2740）、opcua-asyncio（⭐1450）。注意：pycomm3（⭐510）已停止维护，AB PLC 建议改用 pylogix 或 OPC UA。办公型岗位核心技能。",
+        "notes": "这是办公型岗位最有竞争力的技能。python-snap7 4.0 将支持 S7CommPlus（连接禁用 PUT/GET 的 S7-1200/1500）",
+        "code_examples": [
+          "# 方案 1：python-snap7 3.0+ 新 API（推荐）\n# 来源：github.com/gijzelaerr/python-snap7/example/example.py\nfrom snap7 import Client, Row, DB\nfrom snap7.type import Area\n\nclient = Client()\nclient.connect('192.168.200.24', 0, 3)  # IP, rack=0, slot=3\n\n# 读取 DB1 中第 0 行（每行 126 字节）\nrow_size = 126\ndata = client.db_read(1, 4 + 0 * row_size, row_size)\nrow = Row(data, rc_if_db_1_layout, layout_offset=4)\nprint('阀门名称:', row['RC_IF_NAME'])\n\n# 写整行（控制阀门开关）\nrow['Occupied'] = 1\nrow['OpenAut'] = 1   # 自动开启\nrow['CloseAut'] = 0\nclient.db_write(1, 4 + 0 * row_size, row._bytearray)\n\nclient.disconnect()",
+          "# 方案 2：pymodbus（Modbus TCP，最通用）\nfrom pymodbus.client import ModbusTcpClient\nwith ModbusTcpClient('192.168.1.100') as client:\n    result = client.read_holding_registers(address=0, count=10, slave=1)\n    if not result.isError():\n        print(result.registers)",
+          "# 方案 3：opcua-asyncio（OPC UA，MES 方向推荐）\nimport asyncio\nfrom asyncua import Client\n\nasync def read_plc():\n    async with Client(url='opc.tcp://192.168.1.50:4840') as client:\n        node = client.get_node('ns=2;s=Temperature')\n        temp = await node.read_value()\n        print(f'温度: {temp}°C')\n\nasyncio.run(read_plc())"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "Python",
+          "snap7",
+          "pymodbus",
+          "opcua-asyncio",
+          "办公型",
+          "python-snap7"
+        ]
+      }
+    },
+    {
+      "id": "concept_sharp7",
+      "label": "C# 与 PLC 通信",
+      "type": "concept",
+      "properties": {
+        "stage": "office",
+        "stage_label": "办公型岗位重点",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "用 C# 与西门子 PLC 通信。推荐库：s7netplus（⭐1618，github.com/S7NetPlus/s7netplus，.NET 主流）、Sharp7（⭐257，github.com/fbarresi/Sharp7，Snap7 的 C# 移植）。适合开发上位机软件、MES 客户端。",
+        "notes": "",
+        "code_examples": [
+          "// C# 通过 s7netplus 连接西门子 S7 PLC（推荐方案）\n// 来源：github.com/S7NetPlus/s7netplus  NuGet: Install-Package S7netplus\nusing S7.Net;\nusing S7.Net.Types;\n\n// 地址格式示例：\n//   DB10.DBD0  -> REAL at DB10, offset 0\n//   DB10.DBW4  -> INT/WORD at DB10, offset 4\n//   DB10.DBX0.0-> BOOL at DB10, byte 0, bit 0\n//   M0.0 / MW10 / I0.0 / Q0.0\n\nvar plc = new Plc(CpuType.S71500, '192.168.1.10', 0, 1);\nplc.Open();\n\n// 读单个变量（按地址字符串）\nobject temp = plc.Read('DB10.DBD0');   // 返回 float\nobject speed = plc.Read('DB10.DBW4');  // 返回 Int16\nbool motor = (bool)plc.Read('DB10.DBX0.0');\n\n// 写变量\nplc.Write('DB10.DBD0', 75.5f);\nplc.Write('DB10.DBX0.0', true);\n\n// 批量读（推荐，减少往返）\nvar db10 = plc.ReadClass<DB10Class>(DBType.DB, 10);\nplc.Close();",
+          "// C# 通过 Sharp7 连接 S7-1200/1500（备选方案）\n// 来源：github.com/fbarresi/Sharp7  NuGet: Install-Package Sharp7\n// 注意：S7-1500 需关闭 DB 'optimized block access' 并启用 GET/PUT\nusing Sharp7;\n\nvar client = new S7Client();\n// Connect(ip, rack, slot, port=102)\nint result = client.ConnectTo('192.168.1.10', 0, 1);\nif (result == 0)\n{\n    // 读 DB1.DBX0.0（BOOL）\n    byte[] buffer = new byte[1];\n    client.DBRead(1, 0, 1, buffer);\n    bool bit = (buffer[0] & 0x01) != 0;\n\n    // 读 DB1.DBD4（REAL, 4 字节）\n    byte[] floatBuf = new byte[4];\n    client.DBRead(1, 4, 4, floatBuf);\n    float temp = BitConverter.ToSingle(floatBuf, 0);\n    // 注意：S7 使用大端序，需根据平台翻转\n    client.Disconnect();\n}"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "C#",
+          "s7netplus",
+          "Sharp7",
+          "上位机",
+          "办公型"
+        ]
+      }
+    },
+    {
+      "id": "device_s7_1200",
+      "label": "S7-1200",
+      "type": "device",
+      "properties": {
+        "stage": "basic",
+        "stage_label": "基础",
+        "status": "learning",
+        "status_label": "学习中",
+        "mastery_level": 30,
+        "description": "紧凑型 PLC，适合中小型项目。支持 Profinet、Modbus TCP。不支持 OPC UA Server（需 S7-1500）。",
+        "notes": "",
+        "code_examples": [
+          "# S7-1200 规格：\n# CPU 1211C/1212C/1214C/1215C/1217C\n# 工作内存 100KB-150KB\n# 数字量 IO 14-28 点（取决于型号）\n# 模拟量 IO 2-5 通道\n# Profinet 接口 ×1\n# 信号板可扩展（SB/SM/CM）"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "S7-1200",
+          "西门子",
+          "PLC"
+        ]
+      }
+    },
+    {
+      "id": "device_s7_1500",
+      "label": "S7-1500",
+      "type": "device",
+      "properties": {
+        "stage": "advanced",
+        "stage_label": "进阶",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "高端 PLC，支持 OPC UA Server、Web Server、安全功能。MES/工业互联网首选。",
+        "notes": "",
+        "code_examples": [
+          "# S7-1500 优势：\n# - 支持 OPC UA Server（内置）\n# - 更大的工作内存（250KB-3MB）\n# - 支持 TRACE 功能（变量追踪）\n# - 支持系统诊断功能\n# - 支持 Web Server（远程访问）\n# - 处理速度比 S7-1200 快约 10 倍"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "S7-1500",
+          "西门子",
+          "PLC",
+          "OPC UA"
+        ]
+      }
+    },
+    {
+      "id": "device_hmi",
+      "label": "HMI 面板",
+      "type": "device",
+      "properties": {
+        "stage": "applied",
+        "stage_label": "应用",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "西门子 HMI 面板：TP700/TP900/TP1500 Comfort。通过 WinCC 组态画面。",
+        "notes": "",
+        "code_examples": [],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "HMI",
+          "TP",
+          "Comfort",
+          "WinCC"
+        ]
+      }
+    },
+    {
+      "id": "device_vfd",
+      "label": "变频器 SINAMICS",
+      "type": "device",
+      "properties": {
+        "stage": "applied",
+        "stage_label": "应用",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "西门子变频器：G120（通用）、S120（高端）。通过 Profinet 与 PLC 通信。",
+        "notes": "",
+        "code_examples": [],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "变频器",
+          "SINAMICS",
+          "G120",
+          "S120"
+        ]
+      }
+    },
+    {
+      "id": "device_et200",
+      "label": "ET200 分布式 IO",
+      "type": "device",
+      "properties": {
+        "stage": "applied",
+        "stage_label": "应用",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "分布式 IO 站，通过 Profinet 扩展 IO 点数。ET200MP（S7-1500 系列）vs ET200SP（紧凑型）。",
+        "notes": "",
+        "code_examples": [],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "ET200",
+          "分布式IO",
+          "Profinet"
+        ]
+      }
+    },
+    {
+      "id": "software_tia",
+      "label": "TIA Portal",
+      "type": "software",
+      "properties": {
+        "stage": "basic",
+        "stage_label": "基础",
+        "status": "learning",
+        "status_label": "学习中",
+        "mastery_level": 35,
+        "description": "西门子全集成自动化工程工具。组态、编程、HMI、驱动、网络一站式。V15/V16/V17/V18 是主流版本。",
+        "notes": "V17 是当前主流版本，兼容性最好",
+        "code_examples": [
+          "# TIA Portal 操作流程：\n# 1. 新建项目\n# 2. 添加设备（PLC/HMI/驱动器）\n# 3. 设备组态（硬件配置、网络）\n# 4. 编程（OB/FB/FC/DB）\n# 5. HMI 画面组态\n# 6. 下载到设备\n# 7. 在线调试\n\n# 命令行启动（TIA Openness）：\n# \"TiaPortal.exe\" /startUI"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "TIA Portal",
+          "博图",
+          "IDE"
+        ]
+      }
+    },
+    {
+      "id": "software_wincc",
+      "label": "WinCC",
+      "type": "software",
+      "properties": {
+        "stage": "applied",
+        "stage_label": "应用",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "西门子 SCADA/HMI 软件。WinCC Advanced（ Comfort 面板）vs Professional（PC）。",
+        "notes": "",
+        "code_examples": [],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "WinCC",
+          "SCADA",
+          "HMI"
+        ]
+      }
+    },
+    {
+      "id": "software_plcsim",
+      "label": "PLCSIM 仿真",
+      "type": "software",
+      "properties": {
+        "stage": "office",
+        "stage_label": "办公型岗位重点",
+        "status": "learning",
+        "status_label": "学习中",
+        "mastery_level": 25,
+        "description": "TIA Portal 自带 PLC 仿真器。无需硬件即可调试程序，办公型学习核心。",
+        "notes": "无硬件学习的关键工具",
+        "code_examples": [
+          "# PLCSIM 使用：\n# 1. TIA Portal→选中 PLC→开始仿真\n# 2. 自动启动 PLCSIM Advanced\n# 3. 下载程序到仿真 PLC\n# 4. 创建仿真面板（强制输入、监控输出）\n# 5. S7-PLCSIM 支持大多数 OB\n\n# PLCSIM Advanced（高级版）支持：\n# - OPC UA Server（仿真 S7-1500）\n# - Profinet 通信\n# - Web Server"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "PLCSIM",
+          "仿真",
+          "调试",
+          "办公型"
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "concept_variable__has_status__status_mastered",
+      "source": "concept_variable",
+      "target": "status_mastered",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_addressing__has_status__status_learning",
+      "source": "concept_addressing",
+      "target": "status_learning",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_lad__has_status__status_learning",
+      "source": "concept_lad",
+      "target": "status_learning",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_fbd__has_status__status_todo",
+      "source": "concept_fbd",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_scl__has_status__status_todo",
+      "source": "concept_scl",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_ob__has_status__status_todo",
+      "source": "concept_ob",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_fb__has_status__status_todo",
+      "source": "concept_fb",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_fc__has_status__status_todo",
+      "source": "concept_fc",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_db__has_status__status_todo",
+      "source": "concept_db",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "skill_upload_download__has_status__status_todo",
+      "source": "skill_upload_download",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "skill_diagnose__has_status__status_todo",
+      "source": "skill_diagnose",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "skill_vat__has_status__status_todo",
+      "source": "skill_vat",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_hmi__has_status__status_todo",
+      "source": "concept_hmi",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_vfd__has_status__status_todo",
+      "source": "concept_vfd",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "protocol_modbus__has_status__status_todo",
+      "source": "protocol_modbus",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "protocol_opcua__has_status__status_todo",
+      "source": "protocol_opcua",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "protocol_profinet__has_status__status_todo",
+      "source": "protocol_profinet",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_mes__has_status__status_todo",
+      "source": "concept_mes",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_iec61131__has_status__status_todo",
+      "source": "concept_iec61131",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_plc_sim__has_status__status_todo",
+      "source": "concept_plc_sim",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "skill_mes_pipeline__has_status__status_todo",
+      "source": "skill_mes_pipeline",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_pycomm__has_status__status_todo",
+      "source": "concept_pycomm",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_sharp7__has_status__status_todo",
+      "source": "concept_sharp7",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "device_s7_1200__has_status__status_learning",
+      "source": "device_s7_1200",
+      "target": "status_learning",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "device_s7_1500__has_status__status_todo",
+      "source": "device_s7_1500",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "device_hmi__has_status__status_todo",
+      "source": "device_hmi",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "device_vfd__has_status__status_todo",
+      "source": "device_vfd",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "device_et200__has_status__status_todo",
+      "source": "device_et200",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "software_tia__has_status__status_learning",
+      "source": "software_tia",
+      "target": "status_learning",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "software_wincc__has_status__status_todo",
+      "source": "software_wincc",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "software_plcsim__has_status__status_learning",
+      "source": "software_plcsim",
+      "target": "status_learning",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_variable__prerequisite_for__concept_addressing",
+      "source": "concept_variable",
+      "target": "concept_addressing",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_addressing__depends_on__concept_variable",
+      "source": "concept_addressing",
+      "target": "concept_variable",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_iec61131__prerequisite_for__concept_lad",
+      "source": "concept_iec61131",
+      "target": "concept_lad",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_lad__depends_on__concept_iec61131",
+      "source": "concept_lad",
+      "target": "concept_iec61131",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_iec61131__prerequisite_for__concept_fbd",
+      "source": "concept_iec61131",
+      "target": "concept_fbd",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_fbd__depends_on__concept_iec61131",
+      "source": "concept_fbd",
+      "target": "concept_iec61131",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_iec61131__prerequisite_for__concept_scl",
+      "source": "concept_iec61131",
+      "target": "concept_scl",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_scl__depends_on__concept_iec61131",
+      "source": "concept_scl",
+      "target": "concept_iec61131",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_addressing__prerequisite_for__concept_lad",
+      "source": "concept_addressing",
+      "target": "concept_lad",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_lad__depends_on__concept_addressing",
+      "source": "concept_lad",
+      "target": "concept_addressing",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_addressing__prerequisite_for__concept_fbd",
+      "source": "concept_addressing",
+      "target": "concept_fbd",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_fbd__depends_on__concept_addressing",
+      "source": "concept_fbd",
+      "target": "concept_addressing",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_addressing__prerequisite_for__concept_scl",
+      "source": "concept_addressing",
+      "target": "concept_scl",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_scl__depends_on__concept_addressing",
+      "source": "concept_scl",
+      "target": "concept_addressing",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_variable__prerequisite_for__concept_plc_sim",
+      "source": "concept_variable",
+      "target": "concept_plc_sim",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_plc_sim__depends_on__concept_variable",
+      "source": "concept_plc_sim",
+      "target": "concept_variable",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_iec61131__prerequisite_for__concept_plc_sim",
+      "source": "concept_iec61131",
+      "target": "concept_plc_sim",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_plc_sim__depends_on__concept_iec61131",
+      "source": "concept_plc_sim",
+      "target": "concept_iec61131",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_lad__prerequisite_for__concept_ob",
+      "source": "concept_lad",
+      "target": "concept_ob",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_ob__depends_on__concept_lad",
+      "source": "concept_ob",
+      "target": "concept_lad",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_scl__prerequisite_for__concept_fb",
+      "source": "concept_scl",
+      "target": "concept_fb",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_fb__depends_on__concept_scl",
+      "source": "concept_fb",
+      "target": "concept_scl",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_lad__prerequisite_for__concept_fc",
+      "source": "concept_lad",
+      "target": "concept_fc",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_fc__depends_on__concept_lad",
+      "source": "concept_fc",
+      "target": "concept_lad",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_fb__prerequisite_for__concept_db",
+      "source": "concept_fb",
+      "target": "concept_db",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_db__depends_on__concept_fb",
+      "source": "concept_db",
+      "target": "concept_fb",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_ob__prerequisite_for__skill_upload_download",
+      "source": "concept_ob",
+      "target": "skill_upload_download",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "skill_upload_download__depends_on__concept_ob",
+      "source": "skill_upload_download",
+      "target": "concept_ob",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_ob__prerequisite_for__skill_diagnose",
+      "source": "concept_ob",
+      "target": "skill_diagnose",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "skill_diagnose__depends_on__concept_ob",
+      "source": "skill_diagnose",
+      "target": "concept_ob",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_db__prerequisite_for__skill_vat",
+      "source": "concept_db",
+      "target": "skill_vat",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "skill_vat__depends_on__concept_db",
+      "source": "skill_vat",
+      "target": "concept_db",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_scl__prerequisite_for__concept_hmi",
+      "source": "concept_scl",
+      "target": "concept_hmi",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_hmi__depends_on__concept_scl",
+      "source": "concept_hmi",
+      "target": "concept_scl",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_db__prerequisite_for__concept_vfd",
+      "source": "concept_db",
+      "target": "concept_vfd",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_vfd__depends_on__concept_db",
+      "source": "concept_vfd",
+      "target": "concept_db",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "skill_diagnose__prerequisite_for__protocol_modbus",
+      "source": "skill_diagnose",
+      "target": "protocol_modbus",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "protocol_modbus__depends_on__skill_diagnose",
+      "source": "protocol_modbus",
+      "target": "skill_diagnose",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "protocol_modbus__prerequisite_for__protocol_opcua",
+      "source": "protocol_modbus",
+      "target": "protocol_opcua",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "protocol_opcua__depends_on__protocol_modbus",
+      "source": "protocol_opcua",
+      "target": "protocol_modbus",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "protocol_modbus__prerequisite_for__protocol_profinet",
+      "source": "protocol_modbus",
+      "target": "protocol_profinet",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "protocol_profinet__depends_on__protocol_modbus",
+      "source": "protocol_profinet",
+      "target": "protocol_modbus",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "protocol_opcua__prerequisite_for__concept_mes",
+      "source": "protocol_opcua",
+      "target": "concept_mes",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_mes__depends_on__protocol_opcua",
+      "source": "concept_mes",
+      "target": "protocol_opcua",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_scl__prerequisite_for__concept_pycomm",
+      "source": "concept_scl",
+      "target": "concept_pycomm",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_pycomm__depends_on__concept_scl",
+      "source": "concept_pycomm",
+      "target": "concept_scl",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_scl__prerequisite_for__concept_sharp7",
+      "source": "concept_scl",
+      "target": "concept_sharp7",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_sharp7__depends_on__concept_scl",
+      "source": "concept_sharp7",
+      "target": "concept_scl",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_pycomm__prerequisite_for__concept_mes",
+      "source": "concept_pycomm",
+      "target": "concept_mes",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_mes__depends_on__concept_pycomm",
+      "source": "concept_mes",
+      "target": "concept_pycomm",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_sharp7__prerequisite_for__concept_mes",
+      "source": "concept_sharp7",
+      "target": "concept_mes",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_mes__depends_on__concept_sharp7",
+      "source": "concept_mes",
+      "target": "concept_sharp7",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_plc_sim__prerequisite_for__concept_pycomm",
+      "source": "concept_plc_sim",
+      "target": "concept_pycomm",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_pycomm__depends_on__concept_plc_sim",
+      "source": "concept_pycomm",
+      "target": "concept_plc_sim",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_mes__prerequisite_for__skill_mes_pipeline",
+      "source": "concept_mes",
+      "target": "skill_mes_pipeline",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "skill_mes_pipeline__depends_on__concept_mes",
+      "source": "skill_mes_pipeline",
+      "target": "concept_mes",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_pycomm__prerequisite_for__skill_mes_pipeline",
+      "source": "concept_pycomm",
+      "target": "skill_mes_pipeline",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "skill_mes_pipeline__depends_on__concept_pycomm",
+      "source": "skill_mes_pipeline",
+      "target": "concept_pycomm",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "device_s7_1200__supports__protocol_profinet",
+      "source": "device_s7_1200",
+      "target": "protocol_profinet",
+      "type": "supports",
+      "properties": {
+        "relation": "Profinet"
+      }
+    },
+    {
+      "id": "device_s7_1200__supports__protocol_modbus",
+      "source": "device_s7_1200",
+      "target": "protocol_modbus",
+      "type": "supports",
+      "properties": {
+        "relation": "Modbus TCP"
+      }
+    },
+    {
+      "id": "device_s7_1500__supports__protocol_profinet",
+      "source": "device_s7_1500",
+      "target": "protocol_profinet",
+      "type": "supports",
+      "properties": {
+        "relation": "Profinet"
+      }
+    },
+    {
+      "id": "device_s7_1500__supports__protocol_opcua",
+      "source": "device_s7_1500",
+      "target": "protocol_opcua",
+      "type": "supports",
+      "properties": {
+        "relation": "OPC UA Server"
+      }
+    },
+    {
+      "id": "device_s7_1500__supports__protocol_modbus",
+      "source": "device_s7_1500",
+      "target": "protocol_modbus",
+      "type": "supports",
+      "properties": {
+        "relation": "Modbus TCP"
+      }
+    },
+    {
+      "id": "device_et200__supports__protocol_profinet",
+      "source": "device_et200",
+      "target": "protocol_profinet",
+      "type": "supports",
+      "properties": {
+        "relation": "Profinet"
+      }
+    },
+    {
+      "id": "device_vfd__supports__protocol_profinet",
+      "source": "device_vfd",
+      "target": "protocol_profinet",
+      "type": "supports",
+      "properties": {
+        "relation": "Profinet"
+      }
+    },
+    {
+      "id": "device_hmi__supports__protocol_profinet",
+      "source": "device_hmi",
+      "target": "protocol_profinet",
+      "type": "supports",
+      "properties": {
+        "relation": "Profinet"
+      }
+    },
+    {
+      "id": "device_s7_1200__not_supports__protocol_opcua",
+      "source": "device_s7_1200",
+      "target": "protocol_opcua",
+      "type": "not_supports",
+      "properties": {
+        "relation": "不支持 OPC UA Server"
+      }
+    },
+    {
+      "id": "software_tia__used_by__device_s7_1200",
+      "source": "software_tia",
+      "target": "device_s7_1200",
+      "type": "used_by",
+      "properties": {
+        "relation": "编程 S7-1200"
+      }
+    },
+    {
+      "id": "software_tia__used_by__device_s7_1500",
+      "source": "software_tia",
+      "target": "device_s7_1500",
+      "type": "used_by",
+      "properties": {
+        "relation": "编程 S7-1500"
+      }
+    },
+    {
+      "id": "software_tia__used_by__device_hmi",
+      "source": "software_tia",
+      "target": "device_hmi",
+      "type": "used_by",
+      "properties": {
+        "relation": "组态 HMI"
+      }
+    },
+    {
+      "id": "software_tia__used_by__device_vfd",
+      "source": "software_tia",
+      "target": "device_vfd",
+      "type": "used_by",
+      "properties": {
+        "relation": "参数化变频器"
+      }
+    },
+    {
+      "id": "software_wincc__used_by__device_hmi",
+      "source": "software_wincc",
+      "target": "device_hmi",
+      "type": "used_by",
+      "properties": {
+        "relation": "组态画面"
+      }
+    },
+    {
+      "id": "software_plcsim__used_by__software_tia",
+      "source": "software_plcsim",
+      "target": "software_tia",
+      "type": "used_by",
+      "properties": {
+        "relation": "集成仿真"
+      }
+    },
+    {
+      "id": "concept_lad__recommended_for__device_s7_1200",
+      "source": "concept_lad",
+      "target": "device_s7_1200",
+      "type": "recommended_for",
+      "properties": {
+        "relation": "电气工程师入门"
+      }
+    },
+    {
+      "id": "concept_scl__recommended_for__device_s7_1500",
+      "source": "concept_scl",
+      "target": "device_s7_1500",
+      "type": "recommended_for",
+      "properties": {
+        "relation": "工业软件工程师进阶"
+      }
+    },
+    {
+      "id": "concept_pycomm__recommended_for__device_s7_1500",
+      "source": "concept_pycomm",
+      "target": "device_s7_1500",
+      "type": "recommended_for",
+      "properties": {
+        "relation": "MES 数据采集"
+      }
+    },
+    {
+      "id": "concept_pycomm__recommended_for__device_s7_1200",
+      "source": "concept_pycomm",
+      "target": "device_s7_1200",
+      "type": "recommended_for",
+      "properties": {
+        "relation": "MES 数据采集"
+      }
+    },
+    {
+      "id": "software_plcsim__recommended_for__device_s7_1200",
+      "source": "software_plcsim",
+      "target": "device_s7_1200",
+      "type": "recommended_for",
+      "properties": {
+        "relation": "无硬件学习"
+      }
+    }
+  ]
+}

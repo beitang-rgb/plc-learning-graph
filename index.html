@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0f172a">
+
+  <!-- ============================================================ -->
+  <!-- 基础 SEO -->
+  <!-- ============================================================ -->
+  <title>PLC 学习图谱 · 工业自动化学习助手 | 西门子 S7 / TIA Portal / Modbus / OPC UA</title>
+  <meta name="description" content="PLC 学习知识图谱 - 工业 4.0 学习助手。覆盖西门子 S7-1200/1500、TIA Portal、LAD/SCL/FBD、Profinet、Modbus、OPC UA、HMI、WinCC、变频器、MES 数据采集等内容。提供代码示例、学习路径、依赖关系图，适合工业软件工程师 / MES 工程师岗位。">
+  <meta name="keywords" content="PLC,PLC学习,西门子,S7-1200,S7-1500,TIA Portal,LAD,SCL,FBD,Profinet,Modbus,OPC UA,HMI,WinCC,变频器,MES,工业自动化,工业软件工程师,工业4.0,知识图谱,学习路径">
+  <meta name="author" content="PLC 学习图谱">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="language" content="zh-CN">
+  <link rel="canonical" href="https://plc-learning-graph.pages.dev/">
+
+  <!-- ============================================================ -->
+  <!-- Open Graph（Facebook / 微信 / QQ 等社交分享） -->
+  <!-- ============================================================ -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PLC 学习图谱">
+  <meta property="og:title" content="PLC 学习图谱 · 工业自动化学习助手">
+  <meta property="og:description" content="覆盖西门子 S7、TIA Portal、Profinet、Modbus、OPC UA、HMI、WinCC 的 PLC 学习知识图谱。含代码示例与学习路径，适合工业软件工程师 / MES 工程师。">
+  <meta property="og:url" content="https://plc-learning-graph.pages.dev/">
+  <meta property="og:image" content="https://plc-learning-graph.pages.dev/og-image.svg">
+  <meta property="og:image:alt" content="PLC 学习知识图谱 - 节点关系可视化">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- ============================================================ -->
+  <!-- Twitter Card -->
+  <!-- ============================================================ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PLC 学习图谱 · 工业自动化学习助手">
+  <meta name="twitter:description" content="覆盖西门子 S7、TIA Portal、Profinet、Modbus、OPC UA 的 PLC 学习知识图谱。含代码示例与学习路径。">
+  <meta name="twitter:image" content="https://plc-learning-graph.pages.dev/og-image.svg">
+  <meta name="twitter:image:alt" content="PLC 学习知识图谱">
+
+  <!-- ============================================================ -->
+  <!-- PWA / 移动端 -->
+  <!-- ============================================================ -->
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/og-image.svg">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="PLC 图谱">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="application-name" content="PLC 学习图谱">
+
+  <!-- ============================================================ -->
+  <!-- JSON-LD 结构化数据（EducationalOccupationalProgram + FAQPage） -->
+  <!-- 帮助 Google 理解内容类型为「教育资源」，提升搜索富片段曝光 -->
+  <!-- ============================================================ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOccupationalProgram",
+    "name": "PLC 学习图谱 - 工业自动化工程师学习路径",
+    "description": "面向工业软件工程师 / MES 工程师岗位的 PLC 学习知识图谱，覆盖西门子 S7-1200/1500、TIA Portal、LAD/SCL/FBD、Profinet、Modbus、OPC UA、HMI、WinCC、变频器、MES 数据采集。",
+    "educationalCredentialAwarded": "工业自动化学习能力证书（自学）",
+    "occupationalCategory": "15-1252.00",
+    "occupationalCategoryAlternate": "工业软件工程师 / MES 工程师",
+    "provider": {
+      "@type": "Organization",
+      "name": "PLC 学习图谱",
+      "url": "https://plc-learning-graph.pages.dev/"
+    },
+    "url": "https://plc-learning-graph.pages.dev/",
+    "inLanguage": "zh-CN",
+    "programType": "Self-paced learning",
+    "applicationDeadline": "",
+    "startDate": "2026-07-28",
+    "endDate": "",
+    "maximumEnrollment": "0",
+    "typicalAgeRange": "18-45",
+    "timeToComplete": "PT200H",
+    "hasOccupationalCredential": {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "自学能力认证"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "PLC 学习图谱包含哪些内容？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "覆盖西门子 S7-1200/1500 硬件、TIA Portal 编程软件、LAD/SCL/FBD/SFC 四种编程语言、Profinet/Modbus/OPC UA 通信协议、HMI/WinCC 上位机、变频器参数化、MES 数据采集等工业自动化核心知识点，并附带真实代码示例与学习路径依赖图。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "适合哪些岗位学习？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "主要面向工业软件工程师、MES 工程师、工业互联网工程师、PLC 程序员、自动化调试工程师等办公型技术岗位。也可供电气工程师、设备工程师、运维工程师参考。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "学习路径是什么？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "分为 5 个阶段：基础（电气基础、PLC 概念、IEC 61131-3）→ 中段（TIA Portal、变量与数据类型、寻址、SCL、FB/FC/OB）→ 应用（HMI、Profinet、Modbus、OPC UA）→ 进阶（S7-1500、PLCSIM、在线诊断、Python/C# 与 PLC 通信）→ 办公型（MES 数据采集、变频器参数化、WinCC）。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "是否支持离线使用？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "支持。D3 可视化库已下载到本地，整个站点为纯静态 HTML+JS+JSON，可在无网络环境打开。也可导出为 Obsidian Vault 进行间隔重复学习。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "是否有代码示例？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "有。包含 SCL 结构化文本示例、C# 与 S7 通信示例（S7NetPlus）、Python 与 PLC 通信示例（snap7、pymodbus）、Modbus 帧示例等，来源于 OpenPLC、beremiz、s7netplus、pymodbus 等开源项目。"
+        }
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "首页",
+        "item": "https://plc-learning-graph.pages.dev/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "PLC 学习图谱",
+        "item": "https://plc-learning-graph.pages.dev/"
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg-deep: #0a0e1a;
+      --bg-base: #0f172a;
+      --bg-elevated: #1e293b;
+      --bg-card: rgba(30, 41, 59, 0.7);
+      --border: rgba(148, 163, 184, 0.15);
+      --border-strong: rgba(148, 163, 184, 0.3);
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --text-muted: #64748b;
+      --accent: #06b6d4;
+      --accent-glow: rgba(6, 182, 212, 0.4);
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --neutral: #6b7280;
+    }
+    html, body { height: 100%; overflow: hidden; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg-deep);
+      color: var(--text-primary);
+      display: flex; flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+    /* 背景星空效果 */
+    body::before {
+      content: ''; position: fixed; inset: 0; z-index: -1;
+      background:
+        radial-gradient(ellipse at 20% 0%, rgba(59, 130, 246, 0.15), transparent 50%),
+        radial-gradient(ellipse at 80% 100%, rgba(168, 85, 247, 0.12), transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(6, 182, 212, 0.08), transparent 70%),
+        var(--bg-deep);
+    }
+
+    /* Header */
+    header {
+      padding: 14px 20px;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 20;
+    }
+    header h1 {
+      font-size: 18px; font-weight: 600; color: var(--text-primary);
+      display: flex; align-items: center; gap: 8px;
+    }
+    header h1 .icon { font-size: 20px; }
+    header h1 .accent { color: var(--accent); }
+    header .meta { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+    /* 进度条 */
+    .progress-bar {
+      padding: 10px 20px;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      display: flex; gap: 18px; align-items: center; flex-wrap: wrap;
+      font-size: 13px;
+    }
+    .progress-bar .stat { display: flex; align-items: center; gap: 6px; color: var(--text-secondary); }
+    .progress-bar .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      box-shadow: 0 0 8px currentColor;
+    }
+    .progress-bar .percent { color: var(--accent); font-weight: 600; }
+    .progress-bar .avg { color: var(--text-secondary); }
+
+    /* Toolbar */
+    .toolbar {
+      padding: 10px 20px;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+    }
+    .toolbar .label { font-size: 12px; color: var(--text-muted); margin-right: 4px; }
+    .toolbar button {
+      background: var(--bg-elevated); color: var(--text-secondary);
+      border: 1px solid var(--border-strong);
+      padding: 6px 14px; border-radius: 6px;
+      cursor: pointer; font-size: 13px;
+      transition: all 0.2s;
+    }
+    .toolbar button:hover {
+      background: rgba(6, 182, 212, 0.1); border-color: var(--accent);
+      color: var(--accent);
+    }
+    .toolbar button.active {
+      background: var(--accent); color: var(--bg-deep);
+      border-color: var(--accent); font-weight: 600;
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+
+    /* Main */
+    main { flex: 1; display: flex; overflow: hidden; position: relative; }
+    #graph-container { flex: 1; position: relative; overflow: hidden; }
+
+    /* Detail Panel - 侧滑 */
+    #detail-panel {
+      width: 400px; max-width: 90vw;
+      background: var(--bg-card);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-left: 1px solid var(--border-strong);
+      padding: 20px;
+      overflow-y: auto;
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: -8px 0 32px rgba(0, 0, 0, 0.3);
+    }
+    #detail-panel.hidden { transform: translateX(110%); }
+    #detail-panel h2 {
+      font-size: 18px; font-weight: 600; color: var(--accent);
+      margin-bottom: 12px; line-height: 1.4;
+    }
+    #detail-panel .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    #detail-panel .badge {
+      padding: 3px 10px; border-radius: 12px;
+      font-size: 11px; font-weight: 500;
+      border: 1px solid transparent;
+    }
+    #detail-panel .field { margin-bottom: 14px; font-size: 13px; line-height: 1.7; }
+    #detail-panel .field .key { color: var(--text-muted); font-size: 12px; display: block; margin-bottom: 4px; }
+    #detail-panel .field .val { color: var(--text-secondary); word-break: break-word; }
+    #detail-panel pre {
+      background: var(--bg-deep); border: 1px solid var(--border);
+      border-radius: 8px; padding: 12px;
+      overflow-x: auto; font-size: 12px; line-height: 1.6;
+      margin-top: 6px; color: #a5d6ff;
+      font-family: "JetBrains Mono", "Fira Code", "Consolas", "Monaco", monospace;
+    }
+    #detail-panel pre code { font-family: inherit; }
+    #detail-panel .mastery-bar {
+      background: var(--bg-deep); border-radius: 6px;
+      height: 8px; margin-top: 6px; overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    #detail-panel .mastery-fill {
+      height: 100%; border-radius: 6px;
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 8px currentColor;
+    }
+    #detail-panel .relations { font-size: 12px; }
+    #detail-panel .relations .rel-item {
+      padding: 6px 8px; margin: 4px 0;
+      background: rgba(30, 41, 59, 0.5);
+      border-radius: 4px; border-left: 2px solid var(--accent);
+    }
+    #detail-panel .relations .rel-arrow { color: var(--text-muted); margin: 0 6px; }
+    #detail-panel .relations .rel-label { color: var(--accent); font-size: 11px; }
+
+    /* Loading */
+    .loading {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted); font-size: 14px;
+      background: rgba(10, 14, 26, 0.9);
+      z-index: 5;
+    }
+    .loading .spinner {
+      width: 24px; height: 24px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-right: 12px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* SVG 节点 */
+    svg { background: transparent; }
+    .node-circle { cursor: pointer; transition: stroke 0.2s, stroke-width 0.2s; }
+    .node-circle:hover { stroke: var(--accent); stroke-width: 3px; }
+    .node-label {
+      font-size: 11px; fill: var(--text-secondary);
+      text-anchor: middle; pointer-events: none;
+      text-shadow: 0 0 4px var(--bg-deep), 0 0 4px var(--bg-deep);
+    }
+
+    /* Mobile */
+    .mobile-only { display: none; }
+    #btn-toggle-panel {
+      position: absolute; top: 12px; right: 12px;
+      z-index: 15;
+    }
+    @media (max-width: 768px) {
+      .mobile-only { display: inline-block; }
+      #detail-panel { width: 100vw; max-width: 100vw; }
+      .toolbar { padding: 8px 12px; gap: 6px; }
+      .progress-bar { padding: 8px 12px; gap: 12px; font-size: 12px; }
+      header { padding: 10px 14px; }
+      header h1 { font-size: 16px; }
+      #detail-panel { padding: 16px; }
+    }
+
+    /* 滚动条 */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><span class="icon">⚡</span> PLC <span class="accent">学习图谱</span></h1>
+    <div class="meta">工业自动化学习助手 · 目标：工业软件工程师 / MES 工程师 · 离线可用</div>
+  </header>
+
+  <div class="progress-bar" id="progress-bar">
+    <span class="stat"><span class="dot" style="background:#6b7280"></span>加载中...</span>
+  </div>
+
+  <div class="toolbar">
+    <span class="label">状态筛选：</span>
+    <button id="filter-all" class="active">全部</button>
+    <button id="filter-mastered">✓ 已掌握</button>
+    <button id="filter-learning">⏵ 学习中</button>
+    <button id="filter-todo">○ 待学习</button>
+    <button id="filter-question">? 有疑问</button>
+    <span style="flex:1"></span>
+    <button id="btn-reset" title="重置视图">⟳ 重置</button>
+    <button id="btn-toggle-panel" class="mobile-only">📋 详情</button>
+  </div>
+
+  <main>
+    <div id="graph-container">
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <span>正在加载学习图谱...</span>
+      </div>
+    </div>
+    <aside id="detail-panel" class="hidden">
+      <h2 id="detail-title">学习卡片</h2>
+      <div id="detail-content"><div style="color:var(--text-muted);text-align:center;padding:40px 0">点击图中的节点查看学习详情</div></div>
+    </aside>
+  </main>
+
+  <script>
+    // ============================================================
+    // 全局状态
+    // ============================================================
+    const state = {
+      graphData: null,
+      statsData: null,
+      selectedNode: null,
+      filterStatus: "all",
+      simulation: null,   // 修复 H3：保存仿真引用，重新渲染时停止
+      svg: null,
+    };
+
+    const STATUS_COLORS = {"mastered": "#10b981", "learning": "#f59e0b", "todo": "#6b7280", "question": "#ef4444"};
+    const NODE_TYPE_COLORS = {"concept": "#3b82f6", "device": "#a855f7", "protocol": "#06b6d4", "software": "#ec4899", "skill": "#84cc16", "status": "#6b7280"};
+    const NODE_TYPE_LABELS = {"concept": "概念", "device": "设备", "protocol": "协议", "software": "软件", "skill": "技能", "status": "状态"};
+    const EDGE_TYPE_LABELS = {"depends_on": "依赖", "supports": "支持", "not_supports": "不支持", "part_of": "属于", "used_by": "用于", "recommended_for": "推荐", "prerequisite_for": "前置", "has_status": "状态"};
+    const EDGE_STYLE = {"prerequisite_for": {"color": "#10b981", "width": 2.5, "dash": "none"}, "depends_on": {"color": "#10b981", "width": 2, "dash": "5,3"}, "supports": {"color": "#3b82f6", "width": 2, "dash": "none"}, "not_supports": {"color": "#ef4444", "width": 2, "dash": "6,3"}, "part_of": {"color": "#6b7280", "width": 1, "dash": "none"}, "used_by": {"color": "#ec4899", "width": 1.5, "dash": "none"}, "recommended_for": {"color": "#f59e0b", "width": 1.5, "dash": "4,2"}, "has_status": {"color": "#374151", "width": 1, "dash": "2,2"}};
+    const STATUS_LABELS = {"mastered": "已掌握", "learning": "学习中", "todo": "待学习", "question": "有疑问"};
+    const STAGE_LABELS = {"basic": "基础", "middle": "中段", "applied": "应用", "advanced": "进阶", "office": "办公型岗位重点"};
+
+    // ============================================================
+    // 工具函数
+    // ============================================================
+
+    // 修复 H1：所有动态文本必须转义
+    function escapeHtml(text) {
+      if (text === null || text === undefined) return '';
+      const div = document.createElement('div');
+      div.textContent = String(text);
+      return div.innerHTML;
+    }
+
+    // 修复 H1：回退值也必须转义
+    function safeLabel(map, key) {
+      return map[key] || escapeHtml(key) || '';
+    }
+
+    // 修复 M5：D3 已加载则直接返回
+    function loadScript(src) {
+      if (src.includes('d3') && window.d3) {
+        return Promise.resolve();
+      }
+      return new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = src; s.onload = resolve; s.onerror = reject;
+        document.head.appendChild(s);
+      });
+    }
+
+    // ============================================================
+    // 数据加载
+    // ============================================================
+    async function loadData() {
+      try {
+        const graphRes = await fetch('data/learning_graph.json');
+        state.graphData = await graphRes.json();
+
+        try {
+          const statsRes = await fetch('data/learning_stats.json');
+          state.statsData = await statsRes.json();
+        } catch (e) {
+          state.statsData = null;
+        }
+
+        renderProgressBar();
+        await renderGraph();
+      } catch (e) {
+        document.getElementById('loading').innerHTML =
+          '<span style="color:var(--danger)">加载数据失败：' + escapeHtml(e.message) + '</span>';
+      }
+    }
+
+    function renderProgressBar() {
+      const bar = document.getElementById('progress-bar');
+      if (!state.statsData) { bar.innerHTML = '<span class="stat">统计不可用</span>'; return; }
+      const s = state.statsData;
+      const total = s.total_learning_nodes;
+      bar.innerHTML =
+        '<span class="stat"><span class="dot" style="background:' + STATUS_COLORS.mastered + ';color:' + STATUS_COLORS.mastered + '"></span>已掌握 ' + s.mastered_count + '/' + total + '</span>' +
+        '<span class="stat"><span class="dot" style="background:' + STATUS_COLORS.learning + ';color:' + STATUS_COLORS.learning + '"></span>学习中 ' + s.learning_count + '</span>' +
+        '<span class="stat"><span class="dot" style="background:' + STATUS_COLORS.todo + ';color:' + STATUS_COLORS.todo + '"></span>待学习 ' + s.todo_count + '</span>' +
+        '<span class="stat"><span class="dot" style="background:' + STATUS_COLORS.question + ';color:' + STATUS_COLORS.question + '"></span>有疑问 ' + s.question_count + '</span>' +
+        '<span class="stat">完成率：<span class="percent">' + s.completion_rate + '%</span></span>' +
+        '<span class="stat avg">平均掌握度 ' + s.average_mastery + '</span>';
+    }
+
+    // ============================================================
+    // D3 力导向图
+    // ============================================================
+    async function renderGraph() {
+      // 优先加载本地 D3（离线），失败则回退 CDN
+      try {
+        await loadScript('assets/d3.min.js');
+      } catch (e) {
+        try {
+          await loadScript('https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js');
+        } catch (e2) {
+          document.getElementById('loading').innerHTML =
+            '<span style="color:var(--danger)">D3 加载失败，请检查网络</span>';
+          return;
+        }
+      }
+      const d3 = window.d3;
+
+      // 修复 H3：停止旧的仿真，避免内存/CPU 泄漏
+      if (state.simulation) {
+        state.simulation.stop();
+        state.simulation = null;
+      }
+
+      const container = document.getElementById('graph-container');
+      document.getElementById('loading').style.display = 'none';
+      // 清空旧 SVG
+      if (state.svg) {
+        state.svg.remove();
+      }
+
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      const data = state.graphData;
+
+      // 过滤 STATUS 节点
+      const statusNodeIds = new Set(
+        data.nodes.filter(n => n.type === 'status').map(n => n.id)
+      );
+      let visibleNodes = data.nodes.filter(n => n.type !== 'status');
+      let visibleEdges = data.edges.filter(e =>
+        !statusNodeIds.has(e.source) && !statusNodeIds.has(e.target)
+      );
+
+      // 按状态筛选
+      if (state.filterStatus !== 'all') {
+        const filteredIds = new Set(
+          visibleNodes.filter(n => n.properties.status === state.filterStatus).map(n => n.id)
+        );
+        visibleNodes = visibleNodes.filter(n => filteredIds.has(n.id));
+        visibleEdges = visibleEdges.filter(e =>
+          filteredIds.has(e.source.id || e.source) && filteredIds.has(e.target.id || e.target)
+        );
+      }
+
+      const svg = d3.select(container).append('svg')
+        .attr('width', width).attr('height', height)
+        .attr('viewBox', [0, 0, width, height]);
+      state.svg = svg.node();
+
+      const defs = svg.append('defs');
+      // 箭头 marker
+      Object.entries(EDGE_STYLE).forEach(([type, style]) => {
+        defs.append('marker')
+          .attr('id', 'arrow-' + type)
+          .attr('viewBox', '0 -5 10 10')
+          .attr('refX', 18).attr('refY', 0)
+          .attr('markerWidth', 6).attr('markerHeight', 6)
+          .attr('orient', 'auto')
+          .append('path')
+          .attr('d', 'M0,-5L10,0L0,5')
+          .attr('fill', style.color);
+      });
+      // 节点发光滤镜
+      const filter = defs.append('filter')
+        .attr('id', 'glow')
+        .attr('x', '-50%').attr('y', '-50%')
+        .attr('width', '200%').attr('height', '200%');
+      filter.append('feGaussianBlur').attr('stdDeviation', '3').attr('result', 'coloredBlur');
+      const feMerge = filter.append('feMerge');
+      feMerge.append('feMergeNode').attr('in', 'coloredBlur');
+      feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
+
+      const g = svg.append('g');
+      const zoom = d3.zoom().scaleExtent([0.2, 5]).on('zoom', e => g.attr('transform', e.transform));
+      svg.call(zoom);
+
+      const sim = d3.forceSimulation(visibleNodes)
+        .force('link', d3.forceLink(visibleEdges).id(d => d.id).distance(d => {
+          if (d.type === 'prerequisite_for') return 110;
+          if (d.type === 'depends_on') return 110;
+          return 85;
+        }).strength(0.4))
+        .force('charge', d3.forceManyBody().strength(-400))
+        .force('center', d3.forceCenter(width/2, height/2))
+        .force('collision', d3.forceCollide().radius(d => 22));
+      state.simulation = sim;
+
+      // 边
+      const link = g.append('g').selectAll('line')
+        .data(visibleEdges).enter().append('line')
+        .attr('stroke', d => (EDGE_STYLE[d.type] || {color: '#666'}).color)
+        .attr('stroke-width', d => (EDGE_STYLE[d.type] || {width: 1}).width)
+        .attr('stroke-dasharray', d => (EDGE_STYLE[d.type] || {dash: 'none'}).dash)
+        .attr('marker-end', d => 'url(#arrow-' + d.type + ')')
+        .attr('opacity', 0.5);
+
+      // 节点（颜色按学习状态）
+      const node = g.append('g').selectAll('circle')
+        .data(visibleNodes).enter().append('circle')
+        .attr('class', 'node-circle')
+        .attr('r', d => d.type === 'concept' ? 14 : 10)
+        .attr('fill', d => {
+          const status = d.properties.status;
+          return STATUS_COLORS[status] || '#6b7280';
+        })
+        .attr('stroke', '#fff').attr('stroke-width', 1.5)
+        .style('filter', 'url(#glow)')
+        .call(d3.drag()
+          .on('start', (e, d) => { if (!e.active) sim.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+          .on('drag', (e, d) => { d.fx = e.x; d.fy = e.y; })
+          .on('end', (e, d) => { if (!e.active) sim.alphaTarget(0); d.fx = null; d.fy = null; }));
+
+      node.on('click', (e, d) => { selectNode(d); e.stopPropagation(); });
+
+      // 标签
+      const label = g.append('g').selectAll('text')
+        .data(visibleNodes).enter().append('text')
+        .attr('class', 'node-label')
+        .text(d => d.label)
+        .attr('dy', 26);
+
+      sim.on('tick', () => {
+        link.attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+            .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+        node.attr('cx', d => d.x).attr('cy', d => d.y);
+        label.attr('x', d => d.x).attr('y', d => d.y);
+      });
+
+      svg.on('click', () => deselectNode());
+
+      function selectNode(d) {
+        state.selectedNode = d;
+        node.attr('stroke', n => n.id === d.id ? '#06b6d4' : '#fff')
+            .attr('stroke-width', n => n.id === d.id ? 4 : 1.5);
+        showDetail(d);
+        highlightNeighbors(d);
+      }
+
+      function deselectNode() {
+        state.selectedNode = null;
+        node.attr('stroke', '#fff').attr('stroke-width', 1.5);
+        link.attr('opacity', 0.5);
+        node.attr('opacity', 1);
+        document.getElementById('detail-panel').classList.add('hidden');
+      }
+
+      function highlightNeighbors(d) {
+        const nbrIds = new Set([d.id]);
+        visibleEdges.forEach(e => {
+          const sid = e.source.id || e.source;
+          const tid = e.target.id || e.target;
+          if (sid === d.id) nbrIds.add(tid);
+          if (tid === d.id) nbrIds.add(sid);
+        });
+        node.attr('opacity', n => nbrIds.has(n.id) ? 1 : 0.2);
+        link.attr('opacity', e => {
+          const sid = e.source.id || e.source;
+          const tid = e.target.id || e.target;
+          return (sid === d.id || tid === d.id) ? 0.9 : 0.1;
+        });
+      }
+
+      function showDetail(d) {
+        const panel = document.getElementById('detail-panel');
+        panel.classList.remove('hidden');
+        document.getElementById('detail-title').textContent = d.label;
+
+        const p = d.properties || {};
+        const statusColor = STATUS_COLORS[p.status] || '#6b7280';
+        // 修复 H1：所有回退值都过 escapeHtml
+        const typeLabel = safeLabel(NODE_TYPE_LABELS, d.type);
+        const statusLabel = safeLabel(STATUS_LABELS, p.status);
+        const stageLabel = safeLabel(STAGE_LABELS, p.stage);
+        const typeColor = NODE_TYPE_COLORS[d.type] || '#6b7280';
+
+        let html = '';
+
+        // 徽章
+        html += '<div class="badges">';
+        html += '<span class="badge" style="background:' + typeColor + ';color:#fff">' + typeLabel + '</span>';
+        html += '<span class="badge" style="background:' + statusColor + ';color:#fff">' + statusLabel + '</span>';
+        if (stageLabel) {
+          html += '<span class="badge" style="background:rgba(148,163,184,0.15);color:var(--text-secondary);border-color:var(--border-strong)">' + stageLabel + '</span>';
+        }
+        html += '</div>';
+
+        // 描述
+        if (p.description) {
+          html += '<div class="field"><span class="key">说明</span><span class="val">' + escapeHtml(p.description) + '</span></div>';
+        }
+
+        // 掌握度
+        if (typeof p.mastery_level === 'number') {
+          html += '<div class="field"><span class="key">掌握度 ' + escapeHtml(p.mastery_level) + '/100</span>';
+          html += '<div class="mastery-bar"><div class="mastery-fill" style="width:' + p.mastery_level + '%;background:' + statusColor + ';color:' + statusColor + '"></div></div></div>';
+        }
+
+        // 代码示例
+        if (p.code_examples && p.code_examples.length > 0) {
+          html += '<div class="field"><span class="key">代码示例</span>';
+          p.code_examples.forEach((code, i) => {
+            html += '<pre><code>' + escapeHtml(code) + '</code></pre>';
+          });
+          html += '</div>';
+        }
+
+        // 笔记
+        if (p.notes) {
+          html += '<div class="field"><span class="key">💡 笔记</span><span class="val" style="color:#fbbf24">' + escapeHtml(p.notes) + '</span></div>';
+        }
+
+        // 复习信息
+        if (p.review_count !== undefined) {
+          html += '<div class="field"><span class="key">复习记录</span><span class="val">复习 ' + escapeHtml(p.review_count) + ' 次';
+          if (p.last_reviewed) {
+            html += ' · 上次复习 ' + escapeHtml(p.last_reviewed);
+          }
+          html += '</span></div>';
+        }
+
+        // 标签
+        if (p.tags && p.tags.length > 0) {
+          html += '<div class="field"><span class="key">标签</span>';
+          p.tags.forEach(tag => {
+            html += '<span class="badge" style="background:rgba(148,163,184,0.1);color:var(--text-secondary);border-color:var(--border);margin-right:4px">' + escapeHtml(tag) + '</span>';
+          });
+          html += '</div>';
+        }
+
+        // 关联节点
+        const connected = visibleEdges.filter(e => {
+          const sid = e.source.id || e.source;
+          const tid = e.target.id || e.target;
+          return sid === d.id || tid === d.id;
+        });
+        if (connected.length > 0) {
+          html += '<div class="field"><span class="key">关联（' + connected.length + '）</span>';
+          html += '<div class="relations">';
+          connected.slice(0, 10).forEach(e => {
+            const sid = e.source.id || e.source;
+            const tid = e.target.id || e.target;
+            const otherId = sid === d.id ? tid : sid;
+            const otherNode = visibleNodes.find(n => n.id === otherId);
+            const otherLabel = otherNode ? otherNode.label : otherId;
+            const rel = EDGE_TYPE_LABELS[e.type] || e.type;
+            const arrow = sid === d.id ? ' → ' : ' ← ';
+            html += '<div class="rel-item"><span class="rel-label">' + escapeHtml(rel) + '</span><span class="rel-arrow">' + arrow + '</span>' + escapeHtml(otherLabel) + '</div>';
+          });
+          html += '</div></div>';
+        }
+
+        document.getElementById('detail-content').innerHTML = html;
+      }
+
+      // 筛选按钮
+      const filterButtons = {
+        'all': document.getElementById('filter-all'),
+        'mastered': document.getElementById('filter-mastered'),
+        'learning': document.getElementById('filter-learning'),
+        'todo': document.getElementById('filter-todo'),
+        'question': document.getElementById('filter-question'),
+      };
+      Object.entries(filterButtons).forEach(([key, btn]) => {
+        btn.onclick = () => {
+          state.filterStatus = key;
+          Object.values(filterButtons).forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          renderGraph();
+        };
+      });
+
+      document.getElementById('btn-reset').onclick = () => {
+        svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
+      };
+      document.getElementById('btn-toggle-panel').onclick = () => {
+        document.getElementById('detail-panel').classList.toggle('hidden');
+      };
+    }
+
+    // ============================================================
+    // 启动
+    // ============================================================
+    window.addEventListener('DOMContentLoaded', loadData);
+    // 修复 H3：resize 防抖
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        if (state.graphData) renderGraph();
+      }, 250);
+    });
+  </script>
+</body>
+</html>

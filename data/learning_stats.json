@@ -1,0 +1,41 @@
+{
+  "total_learning_nodes": 31,
+  "by_status": {
+    "mastered": 1,
+    "learning": 5,
+    "todo": 25,
+    "question": 0
+  },
+  "by_status_label": {
+    "已掌握": 1,
+    "学习中": 5,
+    "待学习": 25,
+    "有疑问": 0
+  },
+  "by_stage": {
+    "basic": 6,
+    "middle": 7,
+    "applied": 10,
+    "advanced": 4,
+    "office": 4
+  },
+  "by_stage_label": {
+    "基础": 6,
+    "中段": 7,
+    "应用": 10,
+    "进阶": 4,
+    "办公型岗位重点": 4
+  },
+  "mastery_distribution": {
+    "0-25": 26,
+    "26-50": 4,
+    "51-75": 0,
+    "76-100": 1
+  },
+  "completion_rate": 3.23,
+  "average_mastery": 9.84,
+  "mastered_count": 1,
+  "learning_count": 5,
+  "todo_count": 25,
+  "question_count": 0
+}

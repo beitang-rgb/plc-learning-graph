@@ -1,0 +1,18 @@
+{
+  "name": "PLC 学习图谱",
+  "short_name": "PLC图谱",
+  "description": "工业自动化学习助手",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0e1a",
+  "theme_color": "#06b6d4",
+  "lang": "zh-CN",
+  "icons": [
+    {
+      "src": "/og-image.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

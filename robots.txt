@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /data/
+
+Sitemap: https://plc-learning-graph.pages.dev/sitemap.xml
