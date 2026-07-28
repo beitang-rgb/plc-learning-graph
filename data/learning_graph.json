@@ -13,7 +13,7 @@
       ],
       "learning": "Siemens S7 PLC, HMI, 变频器, Modbus/OPC UA"
     },
-    "generated_at": "2026-07-28T19:41:21"
+    "generated_at": "2026-07-28T22:45:33"
   },
   "nodes": [
     {
@@ -1630,7 +1630,7 @@
         "description": "用 Docker Compose 一键部署完整的 MES 数据采集系统。【系统架构】PLC (S7-1200/1500) → OPC UA Server → Python Gateway (opcua-asyncio) →InfluxDB (时序数据库) → FastAPI (REST API) → Grafana (可视化看板)。【技术栈】Python 3.10+、opcua-asyncio、InfluxDB 2.x、FastAPI、Grafana 10.x、Docker Compose。【功能】1. 采集 PLC 实时数据（温度/压力/速度/产量/状态）。2. 计算 OEE（可用性×性能×质量）。3. 告警推送（Webhook/钉钉/飞书）。4. Grafana 实时看板。5. 历史数据查询 API。【Docker Compose 一键部署】docker-compose.yml 包含：opcua-gateway + influxdb + fastapi + grafana + mqtt-broker。参考：github.com/thingsboard/thingsboard-gateway（⭐2162）、github.com/vogler75/automation-gateway（⭐298）。来源：ThingsBoard 文档、InfluxDB 文档、Grafana 文档。",
         "notes": "Docker Compose 一键部署是工业互联网工程师面试的「王牌」项目。OEE 计算 + 时序数据库 + Grafana 可视化，一条龙展示。",
         "code_examples": [
-          "# Docker Compose 一键部署 MES 数据采集系统\n# 文件：docker-compose.yml\n# 来源：综合 thingsboard-gateway + automation-gateway 架构\nversion: '3.8'\nservices:\n  influxdb:\n    image: influxdb:2.7\n    ports: ['8086:8086']\n    environment:\n      DOCKER_INFLUXDB_INIT_MODE: setup\n      DOCKER_INFLUXDB_INIT_USERNAME: admin\n      DOCKER_INFLUXDB_INIT_PASSWORD: admin123456\n      DOCKER_INFLUXDB_INIT_ORG: factory\n      DOCKER_INFLUXDB_INIT_BUCKET: plc_data\n      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: my-super-secret-token\n    volumes: [influxdb_data:/var/lib/influxdb2]\n\n  opcua-gateway:\n    build: ./gateway\n    environment:\n      OPCUA_URL: opc.tcp://192.168.1.50:4840\n      INFLUXDB_URL: http://influxdb:8086\n      INFLUXDB_TOKEN: my-super-secret-token\n      INFLUXDB_ORG: factory\n      INFLUXDB_BUCKET: plc_data\n      TAGS: ns=2;s=Temperature,ns=2;s=Pressure,ns=2;s=Speed\n    restart: unless-stopped\n\n  fastapi:\n    build: ./api\n    ports: ['8000:8000']\n    environment:\n      INFLUXDB_URL: http://influxdb:8086\n      INFLUXDB_TOKEN: my-super-secret-token\n\n  grafana:\n    image: grafana/grafana:10.0\n    ports: ['3000:3000']\n    environment:\n      GF_SECURITY_ADMIN_PASSWORD: admin\n    volumes: [grafana_data:/var/lib/grafana]\n\nvolumes:\n  influxdb_data:\n  grafana_data:"
+          "# Docker Compose 一键部署 MES 数据采集系统\n# 文件：docker-compose.yml\n# 来源：综合 thingsboard-gateway + automation-gateway 架构\nversion: '3.8'\nservices:\n  influxdb:\n    image: influxdb:2.7\n    ports: ['8086:8086']\n    environment:\n      DOCKER_INFLUXDB_INIT_MODE: setup\n      DOCKER_INFLUXDB_INIT_USERNAME: admin\n      DOCKER_INFLUXDB_INIT_PASSWORD: admin123456\n      DOCKER_INFLUXDB_INIT_ORG: factory\n      DOCKER_INFLUXDB_INIT_BUCKET: plc_data\n      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: my-super-secret-token\n    volumes: [influxdb_data:/var/lib/influxdb2]\n\n  opcua-gateway:\n    build: ./gateway\n    environment:\n      OPCUA_URL: opc.tcp://192.168.1.50:4840\n      # influxdb 是 Docker 内部服务名，实际部署时替换为真实地址\n      INFLUXDB_URL: http://influxdb:8086\n      INFLUXDB_TOKEN: my-super-secret-token\n      INFLUXDB_ORG: factory\n      INFLUXDB_BUCKET: plc_data\n      TAGS: ns=2;s=Temperature,ns=2;s=Pressure,ns=2;s=Speed\n    restart: unless-stopped\n\n  fastapi:\n    build: ./api\n    ports: ['8000:8000']\n    environment:\n      # influxdb 是 Docker 内部服务名，实际部署时替换为真实地址\n      INFLUXDB_URL: http://influxdb:8086\n      INFLUXDB_TOKEN: my-super-secret-token\n\n  grafana:\n    image: grafana/grafana:10.0\n    ports: ['3000:3000']\n    environment:\n      GF_SECURITY_ADMIN_PASSWORD: admin\n    volumes: [grafana_data:/var/lib/grafana]\n\nvolumes:\n  influxdb_data:\n  grafana_data:"
         ],
         "last_reviewed": "",
         "review_count": 0,
@@ -1715,7 +1715,7 @@
         "description": "学 PLC 前需要准备的工具和软件，最低成本方案。【软件（必须）】1. TIA Portal V17/V18/V19（西门子官方编程软件，试用版 21 天免费）下载：support.industry.siemens.com（需注册免费账号）。替代方案：OpenPLC Editor（免费开源，github.com/Autonomy-Logic/openplc-editor）。2. PLCSIM（TIA Portal 自带仿真器，无需硬件即可调试程序）。3. CODESYS（免费，支持 IEC 61131-3，store.codesys.com）。4. Factory IO（3D 工厂仿真，30天试用，factoryio.com）—— 强烈推荐！【硬件（可选，按需购买）】1. S7-1200 入门套件（约 2000-3000 元，含 CPU 1214C + 电源 + IO）。2. 24V 直流电源（为 PLC 和传感器供电，约 100 元）。3. 按钮/开关/指示灯（练习输入输出接线，约 50 元）。4. 网线（连接 PLC 和电脑，约 10 元）。5. 二手 PLC 也可以在闲鱼上买到（约 500-1000 元，注意检查是否正常）。【电脑配置要求】Windows 10/11 专业版 64位（家庭版不支持 TIA Portal！），内存 >= 16GB（推荐 32GB），SSD 剩余 >= 100GB。【零成本学习方案】OpenPLC Editor（免费编程）+ OpenPLC Runtime（免费仿真）+ 在线梯形图仿真器（plcsimulator.online）。【学习资料】plcacademy.com（免费英文教程）、realpars.com（视频课程，部分免费）、B站搜索「西门子 PLC 教程」「TIA Portal 入门」「阳胜峰 PLC」。来源：各软件官网、B站教程、CSDN 安装教程、知乎。",
         "notes": "如果电脑配置不够装 TIA Portal，用 OpenPLC 或 CODESYS 也能学，效果一样。PLC 的核心是编程思维，不是软件。",
         "code_examples": [
-          "# 零成本学习 PLC 的完整方案：\n# Step 1: 下载 OpenPLC Editor（免费）\n#    github.com/Autonomy-Logic/openplc-editor/releases\n# Step 2: 下载 OpenPLC Runtime（免费仿真）\n#    github.com/Autonomy-Logic/openplc-runtime\n# Step 3: Docker 一键运行 Runtime：\n#    docker run -it --rm -p 8080:8080 openplc/openplc-v4:latest\n# Step 4: 打开浏览器 http://localhost:8080\n# Step 5: 在 Editor 中编写梯形图 -> 上传到 Runtime -> 在线监控\n\n# TIA Portal 试用版下载步骤：\n# 1. 注册西门子账号：support.industry.siemens.com\n# 2. 搜索 \"TIA Portal V19 Trial\"\n# 3. 下载并安装（选择 STEP 7 + WinCC + PLCSIM）\n# 4. 试用 21 天，到期后可以重新注册新账号继续试用\n\n# CODESYS 安装（永久免费）：\n# 1. store.codesys.com 下载 CODESYS V3.5\n# 2. 安装后无需注册，直接使用\n# 3. 支持西门子、施耐德、倍福等多种 PLC 品牌"
+          "# 零成本学习 PLC 的完整方案：\n# Step 1: 下载 OpenPLC Editor（免费）\n#    github.com/Autonomy-Logic/openplc-editor/releases\n# Step 2: 下载 OpenPLC Runtime（免费仿真）\n#    github.com/Autonomy-Logic/openplc-runtime\n# Step 3: Docker 一键运行 Runtime：\n#    docker run -it --rm -p 8080:8080 openplc/openplc-v4:latest\n# Step 4: 打开浏览器访问 http://localhost:8080（本机地址）\n# Step 5: 在 Editor 中编写梯形图 -> 上传到 Runtime -> 在线监控\n\n# TIA Portal 试用版下载步骤：\n# 1. 注册西门子账号：support.industry.siemens.com\n# 2. 搜索 \"TIA Portal V19 Trial\"\n# 3. 下载并安装（选择 STEP 7 + WinCC + PLCSIM）\n# 4. 试用 21 天，到期后可以重新注册新账号继续试用\n\n# CODESYS 安装（永久免费）：\n# 1. store.codesys.com 下载 CODESYS V3.5\n# 2. 安装后无需注册，直接使用\n# 3. 支持西门子、施耐德、倍福等多种 PLC 品牌"
         ],
         "last_reviewed": "",
         "review_count": 0,
@@ -1931,6 +1931,117 @@
           "可视化",
           "MVP",
           "MES"
+        ]
+      }
+    },
+    {
+      "id": "concept_plc_career",
+      "label": "PLC 工程师职业路径与薪资（真实数据）",
+      "type": "concept",
+      "properties": {
+        "stage": "project",
+        "stage_label": "实战项目（组合技能）",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "【PLC 工程师职业阶梯】Level 1: 初级调试工程师（0-2年）薪资：5-8K/月（二三线城市），8-12K/月（一线城市）。工作：现场调试、程序修改、接线查线。出差多（50-70%）。Level 2: 自动化工程师（2-5年）薪资：10-18K/月。工作：独立设计程序、HMI 组态、通信配置。出差减少（30-50%）。Level 3: 高级工程师/项目经理（5-10年）薪资：18-30K/月。工作：方案设计、团队管理、项目交付。出差少（10-20%）。Level 4: 技术专家/架构师（10年+）薪资：30-50K/月。工作：技术路线规划、标准制定、疑难问题解决。【办公型岗位方向】MES 工程师（15-25K）、工业软件工程师（15-30K）、SCADA 工程师（12-22K）、工业数据分析师（15-28K）。这些岗位不需要长期出差，办公室工作为主。【地域薪资差异】苏州/深圳/广州（高）> 武汉/成都/长沙（中）> 其他（低）。【学历要求】专科可入行，本科晋升更快。央企/国企/大厂通常卡全日制本科，中小企业更看重能力。来源：BOSS直聘/猎聘/职友集 2024-2025 薪资数据、企业招聘 JD。",
+        "notes": "你的目标是「懂技术的商业人才」，PLC 只是起点。用 PLC 知识做跳板，2-3 年后转 MES/工业软件方向，实现办公室办公+高薪。",
+        "code_examples": [
+          "#  你的职业路径（文科背景 + 专科）：\n# 路径 A（推荐）：PLC 调试工程师(1-2年) -> MES 工程师(2-4年) -> 工业软件工程师\n# 路径 B：PLC 调试 -> 自动化工程师 -> 项目经理\n# 路径 C：PLC 调试 -> SCADA 工程师 -> 工业数据分析师\n\n# 关键跳板：\n# 1. 专升本（计算机/自动化/电气）→ 突破学历天花板\n# 2. Python + PLC 通信 → 切入 MES/工业软件赛道\n# 3. 英语能力 → 外企/出口设备调试（薪资+50%）\n# 4. 开源项目贡献 → 技术博客 → 建立个人品牌\n\n# 避坑指南：\n# 1. 避免纯现场调试岗位（长期出差，成长有限）\n# 2. 尽早学 Python/C#，拓展到 MES 方向\n# 3. 不要只学一个品牌（西门子+汇川+三菱 至少 2 个）"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "职业",
+          "薪资",
+          "路径",
+          "MES",
+          "晋升",
+          "学历",
+          "避坑"
+        ]
+      }
+    },
+    {
+      "id": "concept_protocol_compare",
+      "label": "工业通信协议对比（Modbus/Profinet/OPC UA/EtherCAT）",
+      "type": "concept",
+      "properties": {
+        "stage": "advanced",
+        "stage_label": "进阶",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "【四大工业协议对比】一张表看懂该学哪个。| 协议 | 类型 | 速度 | 实时性 | 难度 | 适用场景 |\n| Modbus TCP/RTU | 应用层 | 慢 | 无 | ★★ | 仪表/变频器/PLC 间通信 |\n| Profinet | 工业以太网 | 快 | 高 | ★★★★ | 西门子生态/运动控制 |\n| OPC UA | 信息建模 | 中 | 无 | ★★★ | MES/SCADA/跨平台/云 |\n| EtherCAT | 现场总线 | 极快 | 极高 | ★★★★★ | 伺服/机器人/高速运动 |\n| CANopen | 现场总线 | 中 | 中 | ★★★ | 车辆/小型设备 |\n| MQTT | 物联网 | 中 | 无 | ★★ | 云平台/手机 App |\n【学习顺序建议】Modbus（最简单，先学）→ Profinet（西门子必备）→ OPC UA（MES 必备）→ MQTT（IoT 方向）。【OSI 七层模型视角】Modbus 是应用层协议（跑在 TCP/RTU 上），Profinet 是工业以太网（修改了标准以太网），OPC UA 是信息建模层（定义了数据的语义），EtherCAT 是物理+数据链路层（修改了以太网帧结构）。来源：各协议官方规范、profinet.com、opcfoundation.org、ethercat.org。",
+        "notes": "Modbus 是「工业通信的普通话」，简单但够用。OPC UA 是「工业通信的英语」，复杂但强大。先学普通话，再学英语。",
+        "code_examples": [
+          "# 协议选择决策树：\n# 1. 西门子设备间通信 → Profinet\n# 2. 不同品牌 PLC 通信 → Modbus TCP\n# 3. PLC 数据上传 MES/云 → OPC UA 或 MQTT\n# 4. 高速运动控制（伺服/机器人）→ EtherCAT\n# 5. 仪表/传感器读数 → Modbus RTU\n\n# Modbus TCP 读取（Python，最简单）：\nfrom pymodbus.client import ModbusTcpClient\nclient = ModbusTcpClient('192.168.1.100')\nclient.connect()\nresult = client.read_holding_registers(0, 10)\nprint(result.registers)  # 10 个寄存器的值\nclient.close()\n\n# OPC UA 读取（Python，需要 opcua-asyncio）：\n# pip install opcua-asyncio\nfrom asyncua import Client\nasync def read_opcua():\n    async with Client(url='opc.tcp://192.168.1.50:4840') as client:\n        var = await client.nodes.root.get_child(\n            ['0:Objects', '2:Temperature'])\n        value = await var.read_value()\n        print(f'温度: {value}°C')"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "协议",
+          "Modbus",
+          "Profinet",
+          "OPC UA",
+          "EtherCAT",
+          "MQTT",
+          "对比"
+        ]
+      }
+    },
+    {
+      "id": "concept_industrial_security",
+      "label": "工业网络安全（IEC 62443 标准）",
+      "type": "concept",
+      "properties": {
+        "stage": "advanced",
+        "stage_label": "进阶",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "【为什么工业安全重要？】2010 年 Stuxnet（震网病毒）攻击伊朗核设施，通过 PLC 漏洞破坏离心机。2015 年乌克兰电网遭攻击，23 万人断电。工业系统不再是「物理隔离=安全」的时代了。【IEC 62443 标准】国际工业自动化控制系统安全标准，分四个层级：1. 一般要求（策略/流程/组织）2. 系统级安全（网络分段/访问控制）3. 组件级安全（PLC/HMI/SCADA 自身安全）4. 安全开发生命周期（供应商开发流程）【PLC 安全最佳实践】1. 禁用未使用的端口（80/443/102/502）2. 设置 PLC 访问密码（TIA Portal 项目保护）3. 网络分段：OT 网络（PLC/SCADA）与 IT 网络（办公）物理隔离4. 禁用 S7-1200/1500 的 Web Server（如果不需要）5. 启用 PLC 的访问控制列表（ACL），只允许已知 IP 访问6. 定期备份 PLC 程序，防止勒索软件加密【常见攻击向量】1. 通过 IT 网络渗透到 OT 网络（VPN 漏洞）2. 工程师站感染恶意软件，下载到 PLC3. 未加密的无线 HMI 被中间人攻击来源：IEC 62443 标准、CISA 工业控制系统安全指南、ISA 99 委员会。",
+        "notes": "工业安全不是「锦上添花」，是「底线」。安全 PLC 编程是高级工程师的必备技能，也是薪资溢价的关键。",
+        "code_examples": [
+          "# S7-1200/1500 安全配置清单（TIA Portal）：\n# 1. 设置 PLC 访问级别：\n#    设备组态 -> 属性 -> 保护 -> 设置密码（4 级权限）\n#    - 无保护（可读写）\n#    - 写保护（只能读，不能写）\n#    - 读/写保护（需要密码）\n#    - 完全保护（禁止所有访问，需密码）\n\n# 2. 禁用 Web Server：\n#    设备组态 -> Web Server -> 取消勾选\"启用 Web Server\"\n\n# 3. 设置访问控制列表（ACL）：\n#    设备组态 -> 属性 -> 访问控制 -> 添加允许的 IP 地址\n\n# 4. 禁用未使用的通信协议：\n#    设备组态 -> 属性 -> 连接机制 -> 取消勾选\"PUT/GET 通信\"\n\n# Python 检测 PLC 安全状态（nmap 扫描）：\n# nmap -p 80,102,443,502 192.168.1.0/24\n# 端口 102 = S7 通信（S7-1200/1500）\n# 端口 502 = Modbus TCP\n# 端口 4840 = OPC UA\n# 端口 80/443 = PLC Web Server"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "安全",
+          "IEC 62443",
+          "网络",
+          "防火墙",
+          "权限",
+          "Stuxnet",
+          "OT"
+        ]
+      }
+    },
+    {
+      "id": "concept_plc_interview",
+      "label": "PLC 工程师面试常见问题（附答案要点）",
+      "type": "concept",
+      "properties": {
+        "stage": "project",
+        "stage_label": "实战项目（组合技能）",
+        "status": "todo",
+        "status_label": "待学习",
+        "mastery_level": 0,
+        "description": "【PLC 面试高频问题 + 答案要点】准备这些，面试不怕。Q1: 什么是 PLC 的扫描周期？影响扫描周期的因素有哪些？答：PLC 循环执行 读输入→执行程序→写输出→通信 的时间。影响因素：程序长度、中断数量、通信负载、CPU 型号。通常 1-10ms。Q2: OB/FB/FC/DB 的区别？答：OB=组织块（程序入口），FB=功能块（有背景 DB，有状态），FC=功能（无状态，纯计算），DB=数据块（全局/背景）。Q3: Modbus TCP 和 Modbus RTU 的区别？答：TCP 跑在以太网上（RJ45），RTU 跑在串口上（RS485）。TCP 更快，RTU 距离更远。TCP 用 IP 地址，RTU 用站号。Q4: 如何实现两台 S7-1200 之间的通信？答：S7 通信（PUT/GET）、Profinet IO、Modbus TCP、TCP/IP 开放式通信。Q5: 什么是 PID 控制？P/I/D 参数各代表什么？答：比例-积分-微分控制。P=比例（当前误差），I=积分（累积误差），D=微分（变化趋势）。P 大→响应快但震荡，I 大→消除稳态误差但超调，D 大→抑制震荡但对噪声敏感。Q6: 遇到过什么故障？怎么排查的？答：准备一个真实案例！如：电机不转→检查输出灯→量电压→查程序→发现互锁条件。Q7: 你用过哪些品牌的 PLC？有什么区别？答：西门子（TIA Portal 全集成）、三菱（GX Works 简单）、欧姆龙（Sysmac 运动强）。来源：面试经验总结、企业招聘 JD、技术社区。",
+        "notes": "面试的核心不是背答案，而是证明你「真的动手做过」。准备一个你亲手完成的项目，把每个细节讲清楚。",
+        "code_examples": [
+          "# 面试可能让你现场写程序（白板编程）：\n# 题目：电机启停控制（启动优先）\n# 要求：按下启动按钮，电机运行；按下停止按钮，电机停止。\n# 启动优先于停止（同时按下时启动）。\n\n# SCL 实现：\nIF \"Start_Button\" THEN\n    \"Motor\" := TRUE;\nELSIF \"Stop_Button\" THEN\n    \"Motor\" := FALSE;\nEND_IF;\n\n# 题目：三相电机星三角启动\n# 要求：启动时星形接法（KM1+KM3），3秒后切换三角形（KM1+KM2）。\n# 两个接触器之间必须有互锁。\n\n# 梯形图思路：\n# 网络1: 启动按钮 -> TON(3秒) -> 星形接触器 KM3\n# 网络2: 定时器触点 -> 三角形接触器 KM2\n# 网络3: KM2 和 KM3 互锁（常闭触点串联）\n# 网络4: 总接触器 KM1 始终闭合"
+        ],
+        "last_reviewed": "",
+        "review_count": 0,
+        "tags": [
+          "面试",
+          "职业",
+          "问题",
+          "答案",
+          "STAR",
+          "项目"
         ]
       }
     }
@@ -2578,6 +2689,42 @@
     {
       "id": "project_python_plc_logger__has_status__status_todo",
       "source": "project_python_plc_logger",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_plc_career__has_status__status_todo",
+      "source": "concept_plc_career",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_protocol_compare__has_status__status_todo",
+      "source": "concept_protocol_compare",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_industrial_security__has_status__status_todo",
+      "source": "concept_industrial_security",
+      "target": "status_todo",
+      "type": "has_status",
+      "properties": {
+        "relation": "学习状态"
+      }
+    },
+    {
+      "id": "concept_plc_interview__has_status__status_todo",
+      "source": "concept_plc_interview",
       "target": "status_todo",
       "type": "has_status",
       "properties": {
@@ -4076,6 +4223,456 @@
       "type": "depends_on",
       "properties": {
         "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_what_is_plc__prerequisite_for__concept_plc_brands",
+      "source": "concept_what_is_plc",
+      "target": "concept_plc_brands",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_plc_brands__depends_on__concept_what_is_plc",
+      "source": "concept_plc_brands",
+      "target": "concept_what_is_plc",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_what_is_plc__prerequisite_for__concept_plc_resources",
+      "source": "concept_what_is_plc",
+      "target": "concept_plc_resources",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_plc_resources__depends_on__concept_what_is_plc",
+      "source": "concept_plc_resources",
+      "target": "concept_what_is_plc",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_plc_brands__prerequisite_for__concept_plc_resources",
+      "source": "concept_plc_brands",
+      "target": "concept_plc_resources",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_plc_resources__depends_on__concept_plc_brands",
+      "source": "concept_plc_resources",
+      "target": "concept_plc_brands",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_career_roadmap__prerequisite_for__concept_plc_career",
+      "source": "concept_career_roadmap",
+      "target": "concept_plc_career",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_plc_career__depends_on__concept_career_roadmap",
+      "source": "concept_plc_career",
+      "target": "concept_career_roadmap",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_plc_brands__prerequisite_for__concept_plc_career",
+      "source": "concept_plc_brands",
+      "target": "concept_plc_career",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_plc_career__depends_on__concept_plc_brands",
+      "source": "concept_plc_career",
+      "target": "concept_plc_brands",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_plc_interview__prerequisite_for__concept_plc_career",
+      "source": "concept_plc_interview",
+      "target": "concept_plc_career",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_plc_career__depends_on__concept_plc_interview",
+      "source": "concept_plc_career",
+      "target": "concept_plc_interview",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "protocol_modbus__prerequisite_for__concept_protocol_compare",
+      "source": "protocol_modbus",
+      "target": "concept_protocol_compare",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_protocol_compare__depends_on__protocol_modbus",
+      "source": "concept_protocol_compare",
+      "target": "protocol_modbus",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "protocol_opcua__prerequisite_for__concept_protocol_compare",
+      "source": "protocol_opcua",
+      "target": "concept_protocol_compare",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_protocol_compare__depends_on__protocol_opcua",
+      "source": "concept_protocol_compare",
+      "target": "protocol_opcua",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "protocol_profinet__prerequisite_for__concept_protocol_compare",
+      "source": "protocol_profinet",
+      "target": "concept_protocol_compare",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_protocol_compare__depends_on__protocol_profinet",
+      "source": "concept_protocol_compare",
+      "target": "protocol_profinet",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "protocol_opcua__prerequisite_for__concept_scada",
+      "source": "protocol_opcua",
+      "target": "concept_scada",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_scada__depends_on__protocol_opcua",
+      "source": "concept_scada",
+      "target": "protocol_opcua",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_mes__prerequisite_for__concept_scada",
+      "source": "concept_mes",
+      "target": "concept_scada",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_scada__depends_on__concept_mes",
+      "source": "concept_scada",
+      "target": "concept_mes",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_plc_security__prerequisite_for__concept_industrial_security",
+      "source": "concept_plc_security",
+      "target": "concept_industrial_security",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_industrial_security__depends_on__concept_plc_security",
+      "source": "concept_industrial_security",
+      "target": "concept_plc_security",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_plc_network__prerequisite_for__concept_industrial_security",
+      "source": "concept_plc_network",
+      "target": "concept_industrial_security",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_industrial_security__depends_on__concept_plc_network",
+      "source": "concept_industrial_security",
+      "target": "concept_plc_network",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_protocol_compare__prerequisite_for__concept_industrial_security",
+      "source": "concept_protocol_compare",
+      "target": "concept_industrial_security",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_industrial_security__depends_on__concept_protocol_compare",
+      "source": "concept_industrial_security",
+      "target": "concept_protocol_compare",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_plc_brands__prerequisite_for__concept_plc_interview",
+      "source": "concept_plc_brands",
+      "target": "concept_plc_interview",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_plc_interview__depends_on__concept_plc_brands",
+      "source": "concept_plc_interview",
+      "target": "concept_plc_brands",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_plc_career__prerequisite_for__concept_plc_interview",
+      "source": "concept_plc_career",
+      "target": "concept_plc_interview",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_plc_interview__depends_on__concept_plc_career",
+      "source": "concept_plc_interview",
+      "target": "concept_plc_career",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_variable__prerequisite_for__concept_plc_interview",
+      "source": "concept_variable",
+      "target": "concept_plc_interview",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_plc_interview__depends_on__concept_variable",
+      "source": "concept_plc_interview",
+      "target": "concept_variable",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_ob__prerequisite_for__concept_plc_interview",
+      "source": "concept_ob",
+      "target": "concept_plc_interview",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_plc_interview__depends_on__concept_ob",
+      "source": "concept_plc_interview",
+      "target": "concept_ob",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "protocol_modbus__prerequisite_for__concept_plc_interview",
+      "source": "protocol_modbus",
+      "target": "concept_plc_interview",
+      "type": "prerequisite_for",
+      "properties": {
+        "relation": "前置依赖"
+      }
+    },
+    {
+      "id": "concept_plc_interview__depends_on__protocol_modbus",
+      "source": "concept_plc_interview",
+      "target": "protocol_modbus",
+      "type": "depends_on",
+      "properties": {
+        "relation": "依赖"
+      }
+    },
+    {
+      "id": "concept_ob__part_of__concept_lad",
+      "source": "concept_ob",
+      "target": "concept_lad",
+      "type": "part_of",
+      "properties": {
+        "relation": "启动组织块属于程序结构"
+      }
+    },
+    {
+      "id": "concept_variable__part_of__concept_addressing",
+      "source": "concept_variable",
+      "target": "concept_addressing",
+      "type": "part_of",
+      "properties": {
+        "relation": "变量定义是寻址体系的一部分"
+      }
+    },
+    {
+      "id": "concept_lad__part_of__concept_fbd",
+      "source": "concept_lad",
+      "target": "concept_fbd",
+      "type": "part_of",
+      "properties": {
+        "relation": "LAD 和 FBD 同属 IEC 61131-3 编程语言"
+      }
+    },
+    {
+      "id": "concept_scl__part_of__concept_fbd",
+      "source": "concept_scl",
+      "target": "concept_fbd",
+      "type": "part_of",
+      "properties": {
+        "relation": "SCL 和 FBD 同属 IEC 61131-3 编程语言"
+      }
+    },
+    {
+      "id": "concept_fb__part_of__concept_ob",
+      "source": "concept_fb",
+      "target": "concept_ob",
+      "type": "part_of",
+      "properties": {
+        "relation": "FB 功能块被 OB 组织块调用"
+      }
+    },
+    {
+      "id": "concept_fc__part_of__concept_ob",
+      "source": "concept_fc",
+      "target": "concept_ob",
+      "type": "part_of",
+      "properties": {
+        "relation": "FC 功能被 OB 组织块调用"
+      }
+    },
+    {
+      "id": "concept_db__part_of__concept_fb",
+      "source": "concept_db",
+      "target": "concept_fb",
+      "type": "part_of",
+      "properties": {
+        "relation": "DB 数据块为 FB 提供背景数据"
+      }
+    },
+    {
+      "id": "device_et200__part_of__device_s7_1500",
+      "source": "device_et200",
+      "target": "device_s7_1500",
+      "type": "part_of",
+      "properties": {
+        "relation": "ET200 是 S7-1500 的分布式 IO"
+      }
+    },
+    {
+      "id": "device_hmi__part_of__software_wincc",
+      "source": "device_hmi",
+      "target": "software_wincc",
+      "type": "part_of",
+      "properties": {
+        "relation": "HMI 画面由 WinCC 组态"
+      }
+    },
+    {
+      "id": "software_plcsim__part_of__software_tia",
+      "source": "software_plcsim",
+      "target": "software_tia",
+      "type": "part_of",
+      "properties": {
+        "relation": "PLCSIM 是 TIA Portal 的仿真组件"
+      }
+    },
+    {
+      "id": "protocol_modbus__part_of__protocol_profinet",
+      "source": "protocol_modbus",
+      "target": "protocol_profinet",
+      "type": "part_of",
+      "properties": {
+        "relation": "Modbus 和 Profinet 同属工业通信协议"
+      }
+    },
+    {
+      "id": "protocol_opcua__part_of__protocol_profinet",
+      "source": "protocol_opcua",
+      "target": "protocol_profinet",
+      "type": "part_of",
+      "properties": {
+        "relation": "OPC UA 和 Profinet 同属工业通信协议"
       }
     },
     {
